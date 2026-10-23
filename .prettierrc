@@ -1,0 +1,14 @@
+{
+  "endOfLine": "auto",
+  "importOrder": ["<BUILTIN_MODULES>", "", "<THIRD_PARTY_MODULES>", "", "^@/(.*)$", "", "^[./]"],
+  "importOrderCaseSensitive": false,
+  "importOrderTypeScriptVersion": "5.0.0",
+  "plugins": ["@ianvs/prettier-plugin-sort-imports", "prettier-plugin-tailwindcss"],
+  "printWidth": 100,
+  "semi": true,
+  "singleQuote": false,
+  "tabWidth": 2,
+  "tailwindFunctions": ["cn", "clsx", "cva", "twMerge"],
+  "tailwindStylesheet": "./app/globals.css",
+  "trailingComma": "all"
+}

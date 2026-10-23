@@ -1,0 +1,12 @@
+*.sql
+.next
+.env*
+AGENTS.md
+build
+next-env.d.ts
+node_modules
+out
+package-lock.json
+public
+supabase
+tsconfig.tsbuildinfo
