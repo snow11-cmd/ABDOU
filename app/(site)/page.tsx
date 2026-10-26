@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
 
+import { Hero } from "@/components/hero/hero";
 import { FeaturedWork } from "@/components/home/featured-work";
-import { Hero } from "@/components/home/hero";
-import { HomeCta } from "@/components/home/home-cta";
 import { HomeMetadata } from "@/components/home/home-metadata";
 import { getProjects, getSiteSettings } from "@/lib/data/queries";
 import { siteConfig } from "@/lib/site-config";
@@ -38,9 +37,8 @@ export default async function HomePage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }}
       />
-      <Hero />
+      <Hero settings={settings} />
       <FeaturedWork projects={projects} />
-      <HomeCta />
     </>
   );
 }

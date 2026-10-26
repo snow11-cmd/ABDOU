@@ -15,15 +15,13 @@ export function PageHeader({
   const { t } = useI18n();
   return (
     <div className="max-w-2xl">
-      <span className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.04] px-4 py-1.5 text-xs font-semibold text-[#9db8ff]">
-        <span className="h-1.5 w-1.5 rounded-full bg-gradient-to-r from-[#4f7cff] to-[#22d3ee]" />
+      <span className="inline-flex items-center gap-2 rounded-full border border-slate-900/10 bg-white/60 px-4 py-1.5 text-xs font-semibold text-slate-700 shadow-[inset_0_1px_0_rgba(255,255,255,0.9)] dark:border-white/[0.1] dark:bg-white/[0.05] dark:text-neutral-100 dark:shadow-none">
+        <span className="h-1.5 w-1.5 rounded-full bg-gradient-to-r from-slate-950 to-slate-400 dark:from-[#c6a15b] dark:to-[#f4f1ea]" />
         {t(eyebrowKey)}
       </span>
-      <h1 className="mt-4 text-3xl font-extrabold tracking-tight text-white sm:text-4xl">
-        {t(titleKey)}
-      </h1>
+      <h1 className="type-title mt-4 text-slate-950 dark:text-[#f4f1ea]">{t(titleKey)}</h1>
       {subtitleKey ? (
-        <p className="mt-3 text-sm leading-relaxed text-[#8b94aa]">{t(subtitleKey)}</p>
+        <p className="type-body mt-3 text-slate-700 dark:text-neutral-200">{t(subtitleKey)}</p>
       ) : null}
     </div>
   );

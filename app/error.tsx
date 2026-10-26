@@ -19,11 +19,11 @@ export default function GlobalError({
 
   return (
     <div className="flex min-h-screen flex-col items-center justify-center px-4 text-center">
-      <p className="text-sm font-semibold tracking-[0.3em] text-[#6f7a93] uppercase">
+      <p className="text-sm font-semibold tracking-[0.3em] text-[#c9d2e2] uppercase">
         {t("common.error")}
       </p>
       <h1 className="mt-3 text-2xl font-bold text-white">{t("common.serverError")}</h1>
-      <p className="mt-2 max-w-md text-sm text-[#8b94aa]">{t("common.errorDesc")}</p>
+      <p className="mt-2 max-w-md text-sm text-[#dbe1ec]">{t("common.errorDesc")}</p>
       <button
         type="button"
         onClick={reset}

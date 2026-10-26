@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 
-import { Projects } from "@/components/home/projects";
+import { WorkPageContent } from "@/components/work/work-page";
 import { getProjects } from "@/lib/data/queries";
 
 export const metadata: Metadata = {
@@ -14,9 +14,5 @@ export const revalidate = 60;
 
 export default async function WorkPage() {
   const projects = await getProjects();
-  return (
-    <div className="site-route">
-      <Projects projects={projects} />
-    </div>
-  );
+  return <WorkPageContent projects={projects} />;
 }

@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 
-import { Services } from "@/components/home/services";
+import { ServicesPageContent } from "@/components/services/services-page";
 import { getServices } from "@/lib/data/queries";
 
 export const metadata: Metadata = {
@@ -14,9 +14,5 @@ export const revalidate = 60;
 
 export default async function ServicesPage() {
   const services = await getServices();
-  return (
-    <div className="site-route">
-      <Services services={services} />
-    </div>
-  );
+  return <ServicesPageContent services={services} />;
 }

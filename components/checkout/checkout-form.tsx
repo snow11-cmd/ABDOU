@@ -1,14 +1,17 @@
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
-import { AlertCircle, ArrowUpLeft, CreditCard, ShieldCheck, ShoppingBag } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useMemo, useState } from "react";
 import { useForm, useWatch } from "react-hook-form";
 import { z } from "zod";
 
+import { CreditCard, ShieldCheck, ShoppingCartIcon, TriangleAlertIcon } from "@/components/icons";
+import { IconHoverContext } from "@/components/icons/hover";
 import { Button } from "@/components/ui/button";
-import { FieldError, Input, Label, Select, Textarea } from "@/components/ui/form";
+import { Input, Label, Select, Textarea } from "@/components/ui/form";
+import { IconTile } from "@/components/ui/icon-tile";
 import type { Service } from "@/lib/data/types";
 import type { DictKey } from "@/lib/i18n/dictionaries";
 import { useI18n } from "@/lib/i18n/provider";
@@ -29,6 +32,13 @@ export function CheckoutForm({
   const { t, lang, locale } = useI18n();
   const router = useRouter();
   const [serverError, setServerError] = useState<string | null>(null);
+  const [hoveredHeading, setHoveredHeading] = useState<string | null>(null);
+  const headingHover = (key: string) => ({
+    onMouseEnter: () => setHoveredHeading(key),
+    onMouseLeave: () => setHoveredHeading(null),
+    onFocus: () => setHoveredHeading(key),
+    onBlur: () => setHoveredHeading(null),
+  });
   const configured = isSupabaseConfigured();
 
   const defaultService =
@@ -52,9 +62,11 @@ export function CheckoutForm({
 
   if (services.length === 0) {
     return (
-      <div className="card mx-auto max-w-xl p-8 text-center">
-        <h2 className="text-lg font-bold text-white">{t("checkout.noServicesTitle")}</h2>
-        <p className="mt-2 text-sm leading-relaxed text-[#8b94aa]">
+      <div className="rounded-[1.7rem] border border-black/[0.08] bg-white/80 p-8 text-center dark:border-white/[0.09] dark:bg-white/[0.035]">
+        <h2 className="text-lg font-semibold text-neutral-950 dark:text-[#f4f1ea]">
+          {t("checkout.noServicesTitle")}
+        </h2>
+        <p className="mt-2 text-sm leading-relaxed text-neutral-600 dark:text-neutral-200">
           {t("checkout.noServicesDesc")}
         </p>
       </div>
@@ -98,16 +110,26 @@ export function CheckoutForm({
     <form
       onSubmit={handleSubmit(onSubmit)}
       noValidate
-      className="grid gap-6 lg:grid-cols-[1.15fr_0.85fr]"
+      className="grid items-start gap-4 lg:grid-cols-[1.15fr_0.85fr]"
     >
-      <div className="card p-6 sm:p-8">
-        <h2 className="flex items-center gap-2 text-lg font-bold text-white">
-          <ShoppingBag className="h-5 w-5 text-[#8ab4ff]" />
-          {t("checkout.service")}
-        </h2>
+      <div className="rounded-[1.7rem] border border-black/[0.08] bg-white/85 p-5 shadow-[0_25px_70px_-60px_rgba(0,0,0,0.45)] backdrop-blur sm:p-7 dark:border-white/[0.09] dark:bg-[#121214]/85">
+        <IconHoverContext.Provider value={hoveredHeading === "service"}>
+          <h2
+            {...headingHover("service")}
+            className="flex items-center gap-3 text-[15px] font-semibold text-neutral-950 dark:text-[#f4f1ea]"
+          >
+            <IconTile icon={ShoppingCartIcon} size="sm" />
+            {t("checkout.service")}
+          </h2>
+        </IconHoverContext.Provider>
 
         <div className="mt-5">
-          <Label htmlFor="serviceSlug">{t("checkout.service")}</Label>
+          <Label
+            htmlFor="serviceSlug"
+            className="mb-1.5 text-[11px] font-medium text-neutral-600 dark:text-neutral-100"
+          >
+            {t("checkout.service")}
+          </Label>
           <Select
             id="serviceSlug"
             aria-invalid={Boolean(errors.serviceSlug)}
@@ -120,61 +142,100 @@ export function CheckoutForm({
               </option>
             ))}
           </Select>
-          <FieldError>{translate(errors.serviceSlug?.message)}</FieldError>
+          {errors.serviceSlug?.message ? (
+            <p className="mt-1.5 text-[11px] text-rose-600 dark:text-rose-400">
+              {translate(errors.serviceSlug.message)}
+            </p>
+          ) : null}
         </div>
 
-        <div className="my-6 h-px bg-white/[0.07]" />
+        <div className="my-6 h-px bg-black/[0.07] dark:bg-white/[0.08]" />
 
-        <h2 className="flex items-center gap-2 text-lg font-bold text-white">
-          <CreditCard className="h-5 w-5 text-[#c4b5fd]" />
-          {t("checkout.customerInfo")}
-        </h2>
+        <IconHoverContext.Provider value={hoveredHeading === "customer"}>
+          <h2
+            {...headingHover("customer")}
+            className="flex items-center gap-3 text-[15px] font-semibold text-neutral-950 dark:text-[#f4f1ea]"
+          >
+            <IconTile icon={CreditCard} size="sm" />
+            {t("checkout.customerInfo")}
+          </h2>
+        </IconHoverContext.Provider>
 
-        <div className="mt-5 grid gap-5 sm:grid-cols-2">
+        <div className="mt-5 grid gap-4 sm:grid-cols-2">
           <div>
-            <Label htmlFor="name">{t("contact.name")}</Label>
+            <Label
+              htmlFor="name"
+              className="mb-1.5 text-[11px] font-medium text-neutral-600 dark:text-neutral-100"
+            >
+              {t("contact.name")}
+            </Label>
             <Input
               id="name"
               autoComplete="name"
               placeholder={t("contact.namePh")}
+              className="h-11 bg-white dark:bg-white/[0.045]"
               aria-invalid={Boolean(errors.name)}
               {...register("name")}
             />
-            <FieldError>{translate(errors.name?.message)}</FieldError>
+            {errors.name?.message ? (
+              <p className="mt-1.5 text-[11px] text-rose-600 dark:text-rose-400">
+                {translate(errors.name.message)}
+              </p>
+            ) : null}
           </div>
           <div>
-            <Label htmlFor="email">{t("contact.email")}</Label>
+            <Label
+              htmlFor="email"
+              className="mb-1.5 text-[11px] font-medium text-neutral-600 dark:text-neutral-100"
+            >
+              {t("contact.email")}
+            </Label>
             <Input
               id="email"
               type="email"
               dir="ltr"
               autoComplete="email"
               placeholder={t("contact.emailPh")}
+              className="h-11 bg-white dark:bg-white/[0.045]"
               aria-invalid={Boolean(errors.email)}
               {...register("email")}
             />
-            <FieldError>{translate(errors.email?.message)}</FieldError>
+            {errors.email?.message ? (
+              <p className="mt-1.5 text-[11px] text-rose-600 dark:text-rose-400">
+                {translate(errors.email.message)}
+              </p>
+            ) : null}
           </div>
         </div>
 
-        <div className="mt-5">
-          <Label htmlFor="notes">{t("checkout.notes")}</Label>
+        <div className="mt-4">
+          <Label
+            htmlFor="notes"
+            className="mb-1.5 text-[11px] font-medium text-neutral-600 dark:text-neutral-100"
+          >
+            {t("checkout.notes")}
+          </Label>
           <Textarea
             id="notes"
             rows={4}
             placeholder={t("checkout.notesPh")}
+            className="bg-white dark:bg-white/[0.045]"
             aria-invalid={Boolean(errors.notes)}
             {...register("notes")}
           />
-          <FieldError>{translate(errors.notes?.message)}</FieldError>
+          {errors.notes?.message ? (
+            <p className="mt-1.5 text-[11px] text-rose-600 dark:text-rose-400">
+              {translate(errors.notes.message)}
+            </p>
+          ) : null}
         </div>
 
         {!paymentsEnabled ? (
           <div
             role="alert"
-            className="mt-5 flex items-start gap-2 rounded-xl border border-amber-400/25 bg-amber-400/10 px-4 py-3 text-sm text-amber-100"
+            className="mt-5 flex items-start gap-2 rounded-xl border border-amber-700/15 bg-amber-50 px-4 py-3 text-[12px] text-amber-900 dark:bg-amber-950/40 dark:text-amber-200"
           >
-            <AlertCircle className="mt-0.5 h-4 w-4 shrink-0" />
+            <TriangleAlertIcon size={16} strokeWidth={1.75} aria-hidden="true" />
             {t("checkout.notConfigured")}
           </div>
         ) : null}
@@ -182,32 +243,36 @@ export function CheckoutForm({
         {serverError ? (
           <div
             role="alert"
-            className="mt-5 flex items-start gap-2 rounded-xl border border-rose-400/25 bg-rose-400/10 px-4 py-3 text-sm text-rose-200"
+            className="mt-5 flex items-start gap-2 rounded-xl border border-rose-700/15 bg-rose-50 px-4 py-3 text-[12px] text-rose-800 dark:bg-rose-950/40 dark:text-rose-300"
           >
-            <AlertCircle className="mt-0.5 h-4 w-4 shrink-0" />
+            <TriangleAlertIcon size={16} strokeWidth={1.75} aria-hidden="true" />
             {serverError}
           </div>
         ) : null}
       </div>
 
-      <aside className="space-y-4">
-        <div className="card p-6">
-          <h3 className="text-sm font-bold text-white">{t("checkout.amount")}</h3>
+      <aside className="space-y-3">
+        <div className="rounded-[1.7rem] border border-black/[0.08] bg-white/85 p-5 backdrop-blur sm:p-6 dark:border-white/[0.09] dark:bg-[#121214]/85">
+          <h3 className="text-[13px] font-semibold text-neutral-950 dark:text-[#f4f1ea]">
+            {t("checkout.amount")}
+          </h3>
           {selected ? (
             <>
-              <p className="mt-3 text-sm text-[#aab4ca]">
+              <p className="mt-3 text-[12px] text-neutral-600 dark:text-neutral-200">
                 {locale(selected.titleAr, selected.titleEn)}
               </p>
-              <p className="text-gradient-soft mt-2 text-3xl font-extrabold">
+              <p className="mt-2 text-3xl font-semibold tracking-tight text-neutral-950 dark:text-[#f4f1ea]">
                 {formatMoney(selected.price, "USD", lang)}
               </p>
-              <p className="mt-1 text-[11px] text-[#6b7590]">{t("services.startFrom")}</p>
+              <p className="mt-1 text-[10px] text-neutral-600 dark:text-neutral-200">
+                {t("services.startFrom")}
+              </p>
             </>
           ) : null}
-          <div className="my-5 h-px bg-white/[0.07]" />
-          <div className="flex items-center justify-between text-sm">
-            <span className="text-[#8b94aa]">{t("checkout.amount")}</span>
-            <span className="font-bold text-white">
+          <div className="my-5 h-px bg-black/[0.07] dark:bg-white/[0.08]" />
+          <div className="flex items-center justify-between text-[12px]">
+            <span className="text-neutral-600 dark:text-neutral-200">{t("checkout.amount")}</span>
+            <span className="font-semibold text-neutral-950 dark:text-[#f4f1ea]">
               {selected ? formatMoney(selected.price, "USD", lang) : "—"}
             </span>
           </div>
@@ -218,21 +283,23 @@ export function CheckoutForm({
             className="mt-6 w-full"
           >
             {isSubmitting ? t("checkout.processing") : t("checkout.submit")}
-            <ArrowUpLeft className="h-4 w-4" />
+            <ArrowUpRight className="size-3.5" aria-hidden="true" />
           </Button>
-          <p className="mt-3 flex items-center justify-center gap-1.5 text-[11px] text-[#6b7590]">
-            <ShieldCheck className="h-3.5 w-3.5 text-emerald-400/80" />
+          <p className="mt-3 flex items-center justify-center gap-1.5 text-[10px] text-neutral-600 dark:text-neutral-200">
+            <ShieldCheck size={14} strokeWidth={1.75} aria-hidden="true" />
             {t("contact.privacy")}
           </p>
         </div>
 
-        <div className="rounded-2xl border border-amber-400/20 bg-amber-400/[0.06] p-5">
-          <h4 className="text-xs font-bold text-amber-200">{t("checkout.sandboxTitle")}</h4>
-          <p className="mt-2 text-[11px] leading-relaxed text-amber-100/70">
+        <div className="rounded-[1.5rem] border border-amber-700/15 bg-amber-50 p-5 dark:bg-amber-950/40">
+          <h4 className="text-[11px] font-semibold text-amber-900 dark:text-amber-200">
+            {t("checkout.sandboxTitle")}
+          </h4>
+          <p className="mt-2 text-[11px] leading-[1.8] text-amber-900 dark:text-amber-200/70">
             {t("checkout.sandboxNotice")}
           </p>
           {!configured ? (
-            <p className="mt-2 text-[11px] leading-relaxed text-amber-100/50">
+            <p className="mt-2 text-[11px] leading-[1.8] text-amber-900 dark:text-amber-200/50">
               {t("checkout.tempStore")}
             </p>
           ) : null}

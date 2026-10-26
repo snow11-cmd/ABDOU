@@ -145,7 +145,7 @@ export function ServicesManager({ services }: { services: Service[] }) {
             <button
               type="button"
               onClick={() => setEditing(null)}
-              className="grid h-8 w-8 place-items-center rounded-lg border border-white/10 text-[#aab4ca] hover:text-white"
+              className="grid h-8 w-8 place-items-center rounded-lg border border-white/10 text-[#eaeef5] hover:text-white"
               aria-label={t("admin.cancel")}
             >
               <X className="h-4 w-4" />
@@ -210,7 +210,7 @@ export function ServicesManager({ services }: { services: Service[] }) {
             </div>
           </div>
 
-          <label className="mt-4 flex cursor-pointer items-center gap-2 text-xs text-[#c3ccdf]">
+          <label className="mt-4 flex cursor-pointer items-center gap-2 text-xs text-[#eef1f7]">
             <input type="checkbox" className="h-4 w-4 accent-[#4f7cff]" {...register("active")} />
             {t("admin.active")}
           </label>
@@ -228,7 +228,7 @@ export function ServicesManager({ services }: { services: Service[] }) {
       ) : null}
 
       {services.length === 0 ? (
-        <div className="rounded-2xl border border-dashed border-white/10 p-12 text-center text-sm text-[#6f7a93]">
+        <div className="rounded-2xl border border-dashed border-white/10 p-12 text-center text-sm text-[#c9d2e2]">
           {t("admin.empty")}
         </div>
       ) : (
@@ -240,7 +240,7 @@ export function ServicesManager({ services }: { services: Service[] }) {
                   <h3 className="text-sm font-bold text-white">
                     {locale(service.titleAr, service.titleEn)}
                   </h3>
-                  <p className="mt-0.5 font-mono text-[10px] text-[#5f6a84]" dir="ltr">
+                  <p className="mt-0.5 font-mono text-[10px] text-[#b9c3d6]" dir="ltr">
                     {service.slug}
                   </p>
                 </div>
@@ -249,7 +249,7 @@ export function ServicesManager({ services }: { services: Service[] }) {
                 </Badge>
               </div>
 
-              <p className="mt-3 flex-1 text-xs leading-relaxed text-[#8b94aa]">
+              <p className="mt-3 flex-1 text-xs leading-relaxed text-[#dbe1ec]">
                 {locale(service.descriptionAr, service.descriptionEn)}
               </p>
 
@@ -257,7 +257,7 @@ export function ServicesManager({ services }: { services: Service[] }) {
                 <span className="text-sm font-bold text-white">
                   {formatMoney(service.price, "USD", lang)}
                 </span>
-                <span className="rounded-md border border-white/[0.08] bg-white/[0.03] px-2 py-1 text-[10px] text-[#7f8aa3]">
+                <span className="rounded-md border border-white/[0.08] bg-white/[0.03] px-2 py-1 text-[10px] text-[#d2dae8]">
                   {service.icon}
                 </span>
               </div>
@@ -266,7 +266,7 @@ export function ServicesManager({ services }: { services: Service[] }) {
                 <button
                   type="button"
                   onClick={() => openEdit(service)}
-                  className="inline-flex flex-1 items-center justify-center gap-1.5 rounded-lg border border-white/10 bg-white/[0.03] py-2 text-[11px] font-medium text-[#c3ccdf] transition hover:border-[#4f7cff]/40 hover:text-white"
+                  className="inline-flex flex-1 items-center justify-center gap-1.5 rounded-lg border border-white/10 bg-white/[0.03] py-2 text-[11px] font-medium text-[#eef1f7] transition hover:border-[#4f7cff]/40 hover:text-white"
                 >
                   <Edit3 className="h-3.5 w-3.5" />
                   {t("admin.edit")}
@@ -275,7 +275,7 @@ export function ServicesManager({ services }: { services: Service[] }) {
                   type="button"
                   onClick={() => toggle(service)}
                   disabled={busyId === service.id}
-                  className="grid h-8 w-8 place-items-center rounded-lg border border-white/10 bg-white/[0.03] text-[#aab4ca] transition hover:text-white disabled:opacity-50"
+                  className="grid h-8 w-8 place-items-center rounded-lg border border-white/10 bg-white/[0.03] text-[#eaeef5] transition hover:text-white disabled:opacity-50"
                   aria-label={service.active ? t("admin.unpublish") : t("admin.publish")}
                 >
                   {service.active ? (
@@ -288,7 +288,7 @@ export function ServicesManager({ services }: { services: Service[] }) {
                   type="button"
                   onClick={() => remove(service)}
                   disabled={busyId === service.id}
-                  className="grid h-8 w-8 place-items-center rounded-lg border border-white/10 bg-white/[0.03] text-[#aab4ca] transition hover:border-rose-400/40 hover:text-rose-300 disabled:opacity-50"
+                  className="grid h-8 w-8 place-items-center rounded-lg border border-white/10 bg-white/[0.03] text-[#eaeef5] transition hover:border-rose-400/40 hover:text-rose-300 disabled:opacity-50"
                   aria-label={t("admin.delete")}
                 >
                   <Power className="h-3.5 w-3.5" />

@@ -19,7 +19,7 @@ export function AdminPageHeader({
         <h1 className="text-2xl font-extrabold tracking-tight text-white sm:text-3xl">
           {t(titleKey)}
         </h1>
-        {subtitleKey ? <p className="mt-1.5 text-sm text-[#8b94aa]">{t(subtitleKey)}</p> : null}
+        {subtitleKey ? <p className="mt-1.5 text-sm text-[#dbe1ec]">{t(subtitleKey)}</p> : null}
       </div>
       {children ? <div className="flex shrink-0 items-center gap-2">{children}</div> : null}
     </div>

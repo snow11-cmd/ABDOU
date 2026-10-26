@@ -1,44 +1,51 @@
-import type { ComponentType } from "react";
+"use client";
 
+import { useContext } from "react";
+
+import type { AnimatedIconComponent } from "@/components/icons";
+import { IconHoverContext, useIconDrive } from "@/components/icons/hover";
 import { cn } from "@/lib/utils";
 
-/** Lucide icons and the inline brand SVGs both satisfy this shape. */
-export type TileIcon = ComponentType<{ className?: string; strokeWidth?: number }>;
-
 const sizes = {
-  sm: "size-9 rounded-lg [&>svg]:size-4",
-  md: "size-11 rounded-xl [&>svg]:size-5",
-  lg: "size-12 rounded-xl [&>svg]:size-5",
-} as const;
-
-const tones = {
-  brand: "border-white/10 bg-white/[0.055] text-[#b6c8f1] [&>svg]:opacity-95",
-  muted: "border-white/[0.08] bg-white/[0.035] text-[#9fb0d6] [&>svg]:opacity-75",
-  emerald: "border-emerald-400/20 bg-emerald-400/10 text-emerald-300",
+  sm: { frame: "size-9 rounded-[0.7rem]", icon: 16 },
+  md: { frame: "size-11 rounded-[0.9rem]", icon: 20 },
+  lg: { frame: "size-14 rounded-[1.05rem]", icon: 24 },
 } as const;
 
 export function IconTile({
   icon: Icon,
   size = "md",
-  tone = "brand",
   className,
+  iconClassName,
 }: {
-  icon: TileIcon;
+  icon: AnimatedIconComponent;
   size?: keyof typeof sizes;
-  tone?: keyof typeof tones;
   className?: string;
+  iconClassName?: string;
 }) {
+  const sizing = sizes[size];
+  // `null` keeps the icon self-hovered; a hover group drives it in and out.
+  const groupActive = useContext(IconHoverContext);
+  const driveRef = useIconDrive(groupActive);
+
   return (
     <span
       aria-hidden="true"
       className={cn(
-        "grid shrink-0 place-items-center border shadow-[inset_0_1px_0_rgba(255,255,255,0.06)]",
-        sizes[size],
-        tones[tone],
+        "icon-tile grid shrink-0 place-items-center border border-black/[0.09] bg-white text-neutral-900 shadow-[0_1px_0_rgba(0,0,0,0.03)] dark:border-white/[0.12] dark:bg-white/[0.055] dark:text-neutral-100 dark:shadow-none",
+        sizing.frame,
         className,
       )}
     >
-      <Icon strokeWidth={1.6} />
+      <Icon
+        ref={driveRef}
+        size={sizing.icon}
+        strokeWidth={1.75}
+        className={cn(
+          "transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]",
+          iconClassName,
+        )}
+      />
     </span>
   );
 }

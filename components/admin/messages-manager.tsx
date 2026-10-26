@@ -58,7 +58,7 @@ export function MessagesManager({ messages }: { messages: ContactMessage[] }) {
               "rounded-full border px-4 py-2 text-xs font-semibold transition",
               filter === tab.key
                 ? "border-[#4f7cff]/50 bg-[#4f7cff]/15 text-white"
-                : "border-white/10 bg-white/[0.03] text-[#8b94aa] hover:text-white",
+                : "border-white/10 bg-white/[0.03] text-[#dbe1ec] hover:text-white",
             )}
           >
             {t(tab.label)}
@@ -72,7 +72,7 @@ export function MessagesManager({ messages }: { messages: ContactMessage[] }) {
       </div>
 
       {filtered.length === 0 ? (
-        <div className="rounded-2xl border border-dashed border-white/10 p-12 text-center text-sm text-[#6f7a93]">
+        <div className="rounded-2xl border border-dashed border-white/10 p-12 text-center text-sm text-[#c9d2e2]">
           {t("admin.empty")}
         </div>
       ) : (
@@ -100,7 +100,7 @@ export function MessagesManager({ messages }: { messages: ContactMessage[] }) {
                       className={cn(
                         "grid h-9 w-9 shrink-0 place-items-center rounded-full text-xs font-bold",
                         message.read
-                          ? "bg-white/[0.05] text-[#8b94aa]"
+                          ? "bg-white/[0.05] text-[#dbe1ec]"
                           : "bg-gradient-to-br from-[#4f7cff] to-[#8b5cf6] text-white",
                       )}
                     >
@@ -113,16 +113,16 @@ export function MessagesManager({ messages }: { messages: ContactMessage[] }) {
                         </span>
                         {!message.read ? <Badge tone="info">{t("admin.unread")}</Badge> : null}
                       </span>
-                      <span className="mt-0.5 block truncate text-xs text-[#8b94aa]">
+                      <span className="mt-0.5 block truncate text-xs text-[#dbe1ec]">
                         {message.subject} · <span dir="ltr">{message.email}</span>
                       </span>
                     </span>
-                    <span className="hidden shrink-0 text-[10px] text-[#5f6a84] sm:block">
+                    <span className="hidden shrink-0 text-[10px] text-[#b9c3d6] sm:block">
                       {formatDate(message.createdAt, lang)}
                     </span>
                     <ChevronDown
                       className={cn(
-                        "mt-1 h-4 w-4 shrink-0 text-[#6f7a93] transition sm:mt-0",
+                        "mt-1 h-4 w-4 shrink-0 text-[#c9d2e2] transition sm:mt-0",
                         open && "rotate-180",
                       )}
                     />
@@ -133,7 +133,7 @@ export function MessagesManager({ messages }: { messages: ContactMessage[] }) {
                       type="button"
                       onClick={() => markRead(message)}
                       disabled={busyId === message.id}
-                      className="grid h-8 w-8 place-items-center rounded-lg border border-white/10 bg-white/[0.03] text-[#aab4ca] transition hover:text-white disabled:opacity-50"
+                      className="grid h-8 w-8 place-items-center rounded-lg border border-white/10 bg-white/[0.03] text-[#eaeef5] transition hover:text-white disabled:opacity-50"
                       aria-label={message.read ? t("admin.markUnread") : t("admin.markRead")}
                     >
                       {message.read ? (
@@ -146,7 +146,7 @@ export function MessagesManager({ messages }: { messages: ContactMessage[] }) {
                       type="button"
                       onClick={() => remove(message)}
                       disabled={busyId === message.id}
-                      className="grid h-8 w-8 place-items-center rounded-lg border border-white/10 bg-white/[0.03] text-[#aab4ca] transition hover:border-rose-400/40 hover:text-rose-300 disabled:opacity-50"
+                      className="grid h-8 w-8 place-items-center rounded-lg border border-white/10 bg-white/[0.03] text-[#eaeef5] transition hover:border-rose-400/40 hover:text-rose-300 disabled:opacity-50"
                       aria-label={t("admin.delete")}
                     >
                       <Trash2 className="h-3.5 w-3.5" />
@@ -156,13 +156,13 @@ export function MessagesManager({ messages }: { messages: ContactMessage[] }) {
 
                 {open ? (
                   <div className="border-t border-white/[0.06] bg-black/20 px-4 py-4 sm:px-5">
-                    <p className="text-sm leading-relaxed whitespace-pre-wrap text-[#c3ccdf]">
+                    <p className="text-sm leading-relaxed whitespace-pre-wrap text-[#eef1f7]">
                       {message.message}
                     </p>
-                    <div className="mt-4 flex flex-wrap items-center gap-3 text-[11px] text-[#6f7a93]">
+                    <div className="mt-4 flex flex-wrap items-center gap-3 text-[11px] text-[#c9d2e2]">
                       <a
                         href={`mailto:${message.email}`}
-                        className="inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-white/[0.04] px-3 py-1.5 text-[#c3ccdf] transition hover:text-white"
+                        className="inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-white/[0.04] px-3 py-1.5 text-[#eef1f7] transition hover:text-white"
                         dir="ltr"
                       >
                         <Mail className="h-3 w-3" />

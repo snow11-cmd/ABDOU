@@ -160,7 +160,7 @@ export function SignupForm() {
             {isSubmitting ? t("auth.loading") : t("auth.signUp")}
             <UserPlus className="h-4 w-4" />
           </Button>
-          <p className="text-center text-[11px] leading-relaxed text-[#6b7590]">
+          <p className="text-center text-[11px] leading-relaxed text-[#c6cfdf]">
             {t("admin.authorizationNote")}
           </p>
         </form>

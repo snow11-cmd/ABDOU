@@ -67,12 +67,12 @@ export function AdminSidebar({ name, email }: { name: string; email: string }) {
   const content = (
     <div className="flex h-full flex-col">
       <div className="flex items-center justify-between px-5 py-5">
-        <Logo />
+        <Logo tone="light" />
         <button
           type="button"
           onClick={() => setOpen(false)}
           aria-label={t("nav.close")}
-          className="grid h-9 w-9 place-items-center rounded-lg border border-white/10 text-[#aab4ca] lg:hidden"
+          className="grid h-9 w-9 place-items-center rounded-lg border border-white/10 text-[#eaeef5] lg:hidden"
         >
           <X className="h-4 w-4" />
         </button>
@@ -85,7 +85,7 @@ export function AdminSidebar({ name, email }: { name: string; email: string }) {
           </span>
           <div className="min-w-0">
             <p className="truncate text-xs font-semibold text-white">{name || "Admin"}</p>
-            <p className="truncate text-[10px] text-[#6f7a93]" dir="ltr">
+            <p className="truncate text-[10px] text-[#c9d2e2]" dir="ltr">
               {email}
             </p>
           </div>
@@ -104,10 +104,10 @@ export function AdminSidebar({ name, email }: { name: string; email: string }) {
                 "flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium transition",
                 active
                   ? "border border-[#4f7cff]/25 bg-[#4f7cff]/12 text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.06)]"
-                  : "border border-transparent text-[#8b94aa] hover:bg-white/[0.04] hover:text-white",
+                  : "border border-transparent text-[#dbe1ec] hover:bg-white/[0.04] hover:text-white",
               )}
             >
-              <item.icon className={cn("h-4 w-4", active ? "text-[#8ab4ff]" : "text-[#6f7a93]")} />
+              <item.icon className={cn("h-4 w-4", active ? "text-[#8ab4ff]" : "text-[#c9d2e2]")} />
               {t(item.key)}
               {active ? <span className="ms-auto h-1.5 w-1.5 rounded-full bg-[#4f7cff]" /> : null}
             </Link>
@@ -117,28 +117,28 @@ export function AdminSidebar({ name, email }: { name: string; email: string }) {
 
       <div className="space-y-1 border-t border-white/[0.06] p-3">
         <div className="flex items-center justify-between px-3 py-2">
-          <span className="text-[10px] tracking-wider text-[#5f6a84] uppercase">
+          <span className="text-[10px] tracking-wider text-[#b9c3d6] uppercase">
             {t("admin.language")}
           </span>
           <LanguageSwitcher compact />
         </div>
         <Link
           href="/"
-          className="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-[#8b94aa] transition hover:bg-white/[0.04] hover:text-white"
+          className="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-[#dbe1ec] transition hover:bg-white/[0.04] hover:text-white"
         >
-          <ExternalLink className="h-4 w-4 text-[#6f7a93]" />
+          <ExternalLink className="h-4 w-4 text-[#c9d2e2]" />
           {t("admin.viewSite")}
         </Link>
         <button
           type="button"
           onClick={signOut}
           disabled={signingOut}
-          className="flex w-full items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-[#8b94aa] transition hover:bg-rose-500/10 hover:text-rose-200 disabled:opacity-60"
+          className="flex w-full items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-[#dbe1ec] transition hover:bg-rose-500/10 hover:text-rose-200 disabled:opacity-60"
         >
           <LogOut className="h-4 w-4" />
           {signingOut ? t("auth.loading") : t("nav.logout")}
         </button>
-        <div className="mt-3 flex items-center gap-2 rounded-lg border border-white/[0.06] bg-white/[0.02] px-3 py-2 text-[10px] text-[#5f6a84]">
+        <div className="mt-3 flex items-center gap-2 rounded-lg border border-white/[0.06] bg-white/[0.02] px-3 py-2 text-[10px] text-[#b9c3d6]">
           <Sparkles className="h-3 w-3 text-[#8ab4ff]" />
           {t("admin.rlsProtected")}
         </div>
@@ -150,7 +150,7 @@ export function AdminSidebar({ name, email }: { name: string; email: string }) {
     <>
       {/* Mobile top bar */}
       <div className="sticky top-0 z-40 flex items-center justify-between border-b border-white/[0.06] bg-[#05070d]/90 px-4 py-3 backdrop-blur-lg lg:hidden">
-        <Logo />
+        <Logo tone="light" />
         <button
           type="button"
           onClick={() => setOpen(true)}

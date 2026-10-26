@@ -21,9 +21,9 @@ export const contactSchema = z.object({
 export type ContactInput = z.infer<typeof contactSchema>;
 
 export const checkoutSchema = z.object({
-  serviceSlug: z.string().trim().min(1).max(100),
-  name: z.string().trim().min(2).max(80),
-  email: z.string().trim().email().max(160),
+  serviceSlug: z.string().trim().min(1, "contact.required").max(100),
+  name: z.string().trim().min(2, "contact.required").max(80),
+  email: z.string().trim().email("contact.emailInvalid").max(160),
   notes: z.string().trim().max(2000).optional().or(z.literal("")),
 });
 

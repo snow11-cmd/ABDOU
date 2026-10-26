@@ -3,22 +3,10 @@ import Link from "next/link";
 import { cn } from "@/lib/utils";
 
 const markSizes = {
-  sm: {
-    outer: "h-8 w-8 rounded-lg p-px",
-    inner: "rounded-[7px] text-[10px]",
-  },
-  md: {
-    outer: "h-10 w-10 rounded-xl p-px shadow-[0_8px_30px_-8px_rgba(79,124,255,0.7)]",
-    inner: "rounded-[11px] text-sm",
-  },
-  lg: {
-    outer: "h-20 w-20 rounded-[1.4rem] p-[2px] shadow-[0_14px_50px_-16px_rgba(79,124,255,0.8)]",
-    inner: "rounded-[1.3rem] text-2xl",
-  },
-  xl: {
-    outer: "h-28 w-28 rounded-[1.8rem] p-[2px] shadow-[0_22px_80px_-24px_rgba(79,124,255,0.85)]",
-    inner: "rounded-[1.7rem] text-4xl",
-  },
+  sm: "h-8 w-8 rounded-lg text-[9px]",
+  md: "h-10 w-10 rounded-xl text-[10px]",
+  lg: "h-20 w-20 rounded-[1.4rem] text-xl",
+  xl: "h-28 w-28 rounded-[1.8rem] text-2xl",
 } as const;
 
 export function LogoMark({
@@ -32,36 +20,53 @@ export function LogoMark({
     <span
       aria-hidden="true"
       className={cn(
-        "relative grid place-items-center bg-gradient-to-br from-[#4f7cff] via-[#6d5df6] to-[#22d3ee]",
-        markSizes[size].outer,
+        "grid shrink-0 place-items-center bg-neutral-950 font-bold tracking-[0.06em] text-white",
+        markSizes[size],
         className,
       )}
     >
-      <span
-        className={cn(
-          "grid h-full w-full place-items-center bg-[#070a13] font-black tracking-tight text-white",
-          markSizes[size].inner,
-        )}
-      >
-        AJ
-      </span>
-      <span className="absolute inset-0 -z-10 rounded-[inherit] bg-gradient-to-br from-[#4f7cff] to-[#22d3ee] opacity-40 blur-lg" />
+      AJ
     </span>
   );
 }
 
-export function Logo({ className, withText = true }: { className?: string; withText?: boolean }) {
+export function Logo({
+  className,
+  withText = true,
+  tone = "dark",
+}: {
+  className?: string;
+  withText?: boolean;
+  tone?: "dark" | "light";
+}) {
   return (
     <Link
       href="/"
       aria-label="Abu Jasem — home"
-      className={cn("group inline-flex items-center gap-3", className)}
+      className={cn("group inline-flex shrink-0 items-center gap-3", className)}
     >
-      <LogoMark className="transition-transform duration-300 group-hover:scale-105" />
+      <LogoMark
+        className={cn(
+          "transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.04]",
+          tone === "light" && "bg-white text-neutral-950",
+        )}
+      />
       {withText ? (
         <span className="flex flex-col leading-none">
-          <span className="text-[0.95rem] font-bold text-white">Abu Jasem</span>
-          <span className="mt-1 text-[0.65rem] font-medium tracking-[0.18em] text-[#7f8aa3] uppercase">
+          <span
+            className={cn(
+              "text-[0.95rem] font-semibold whitespace-nowrap",
+              tone === "light" ? "text-white" : "text-neutral-950",
+            )}
+          >
+            Abu Jasem
+          </span>
+          <span
+            className={cn(
+              "mt-1 text-[0.65rem] font-medium tracking-[0.18em] uppercase",
+              tone === "light" ? "text-white/75" : "text-neutral-600",
+            )}
+          >
             Digital Studio
           </span>
         </span>

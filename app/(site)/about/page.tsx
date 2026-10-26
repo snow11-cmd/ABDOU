@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 
-import { About } from "@/components/home/about";
+import { AboutPageContent } from "@/components/about/about-page";
 
 export const metadata: Metadata = {
   title: "عني",
@@ -10,9 +10,5 @@ export const metadata: Metadata = {
 };
 
 export default function AboutPage() {
-  return (
-    <div className="site-route">
-      <About />
-    </div>
-  );
+  return <AboutPageContent />;
 }

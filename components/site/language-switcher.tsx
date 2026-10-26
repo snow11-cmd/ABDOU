@@ -1,11 +1,17 @@
 "use client";
 
-import { Languages } from "lucide-react";
-
 import { useI18n } from "@/lib/i18n/provider";
 import { cn } from "@/lib/utils";
 
-export function LanguageSwitcher({ compact = false }: { compact?: boolean }) {
+export function LanguageSwitcher({
+  compact = false,
+  tone = "dark",
+  className,
+}: {
+  compact?: boolean;
+  tone?: "dark" | "light";
+  className?: string;
+}) {
   const { lang, toggleLang, t } = useI18n();
 
   return (
@@ -14,12 +20,15 @@ export function LanguageSwitcher({ compact = false }: { compact?: boolean }) {
       onClick={toggleLang}
       aria-label={t(lang === "ar" ? "lang.toEnglish" : "lang.toArabic")}
       className={cn(
-        "inline-flex h-10 items-center gap-2 rounded-full border border-white/10 bg-white/[0.04] px-3 text-xs font-semibold text-[#c3cbdd] transition hover:border-white/20 hover:bg-white/[0.08] hover:text-white",
-        compact && "h-8 px-2.5",
+        "group inline-flex h-10 min-w-10 items-center justify-center rounded-full px-2.5 text-[11px] font-semibold tracking-[0.08em] transition-colors duration-300 focus-visible:outline-2 focus-visible:outline-offset-2",
+        tone === "light"
+          ? "text-white/85 hover:bg-white/10 hover:text-white focus-visible:outline-white"
+          : "text-neutral-600 hover:bg-black/[0.045] hover:text-neutral-950 focus-visible:outline-black dark:text-neutral-100 dark:hover:bg-white/[0.08] dark:hover:text-white dark:focus-visible:outline-white",
+        compact && "md:h-9 md:min-w-9 md:px-2",
+        className,
       )}
     >
-      <Languages className="size-4 text-[#9db8ff] opacity-85" aria-hidden="true" />
-      <span className="min-w-6 tabular-nums">{lang === "ar" ? "EN" : "ع"}</span>
+      <span className="min-w-5 tabular-nums">{lang === "ar" ? "EN" : "AR"}</span>
     </button>
   );
 }

@@ -1,5 +1,6 @@
 "use client";
 
+import { MotionConfig } from "framer-motion";
 import { createContext, useCallback, useContext, useEffect, useMemo, useState } from "react";
 
 import { dictionaries, type DictKey, type Lang } from "./dictionaries";
@@ -70,7 +71,11 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
     [lang, setLang, toggleLang, t, locale],
   );
 
-  return <I18nContext.Provider value={value}>{children}</I18nContext.Provider>;
+  return (
+    <I18nContext.Provider value={value}>
+      <MotionConfig reducedMotion="user">{children}</MotionConfig>
+    </I18nContext.Provider>
+  );
 }
 
 export function useI18n() {

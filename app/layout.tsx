@@ -1,10 +1,19 @@
 import type { Metadata, Viewport } from "next";
+import { IBM_Plex_Sans_Arabic } from "next/font/google";
 import Script from "next/script";
 
 import "./globals.css";
 
 import { LanguageProvider } from "@/lib/i18n/provider";
 import { siteConfig } from "@/lib/site-config";
+
+/** IBM Plex Sans Arabic — self-hosted through next/font, weights 100–700. */
+const plexArabic = IBM_Plex_Sans_Arabic({
+  subsets: ["arabic", "latin"],
+  weight: ["100", "200", "300", "400", "500", "600", "700"],
+  variable: "--font-plex-arabic",
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
@@ -43,25 +52,31 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#04050a",
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#ffffff" },
+    { media: "(prefers-color-scheme: dark)", color: "#0b0b0c" },
+  ],
+  colorScheme: "light dark",
   width: "device-width",
   initialScale: 1,
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="ar" dir="rtl" suppressHydrationWarning>
+    <html
+      lang="ar"
+      dir="rtl"
+      data-scroll-behavior="smooth"
+      suppressHydrationWarning
+      className={plexArabic.variable}
+    >
       <head>
         <Script id="js-flag" strategy="beforeInteractive">
           {`document.documentElement.classList.add('js')`}
         </Script>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        {/* eslint-disable-next-line @next/next/no-page-custom-font */}
-        <link
-          href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap"
-          rel="stylesheet"
-        />
+        <Script id="theme-flag" strategy="beforeInteractive">
+          {`(function(){try{var k='portfolio-theme';var s=localStorage.getItem(k);var d=s?s==='dark':window.matchMedia('(prefers-color-scheme: dark)').matches;var r=document.documentElement;r.classList.toggle('dark',d);r.style.colorScheme=d?'dark':'light';}catch(e){}})()`}
+        </Script>
       </head>
       <body className="min-h-screen antialiased">
         <LanguageProvider>{children}</LanguageProvider>

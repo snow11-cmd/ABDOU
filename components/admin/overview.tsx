@@ -72,12 +72,12 @@ export function Overview({
               >
                 <card.icon className="h-4.5 w-4.5" />
               </span>
-              <span className="text-[10px] tracking-wider text-[#5f6a84] uppercase">
+              <span className="text-[10px] tracking-wider text-[#b9c3d6] uppercase">
                 {card.hint}
               </span>
             </div>
             <div className="mt-4 text-2xl font-extrabold text-white">{card.value}</div>
-            <div className="mt-1 text-xs text-[#8b94aa]">{card.label}</div>
+            <div className="mt-1 text-xs text-[#dbe1ec]">{card.label}</div>
           </div>
         ))}
       </div>
@@ -95,12 +95,12 @@ export function Overview({
             </Link>
           </div>
           {messages.length === 0 ? (
-            <p className="py-8 text-center text-xs text-[#6b7590]">{t("admin.noMessages")}</p>
+            <p className="py-8 text-center text-xs text-[#c6cfdf]">{t("admin.noMessages")}</p>
           ) : (
             <ul className="divide-y divide-white/[0.05]">
               {messages.slice(0, 5).map((message) => (
                 <li key={message.id} className="flex items-start gap-3 py-3">
-                  <span className="grid h-8 w-8 shrink-0 place-items-center rounded-full bg-white/[0.05] text-[10px] font-bold text-[#aab4ca]">
+                  <span className="grid h-8 w-8 shrink-0 place-items-center rounded-full bg-white/[0.05] text-[10px] font-bold text-[#eaeef5]">
                     {message.name.charAt(0).toUpperCase()}
                   </span>
                   <div className="min-w-0 flex-1">
@@ -108,8 +108,8 @@ export function Overview({
                       <p className="truncate text-xs font-semibold text-white">{message.name}</p>
                       {!message.read ? <Badge tone="info">{t("admin.unread")}</Badge> : null}
                     </div>
-                    <p className="mt-0.5 truncate text-[11px] text-[#8b94aa]">{message.subject}</p>
-                    <p className="mt-1 text-[10px] text-[#5f6a84]">
+                    <p className="mt-0.5 truncate text-[11px] text-[#dbe1ec]">{message.subject}</p>
+                    <p className="mt-1 text-[10px] text-[#b9c3d6]">
                       {formatDate(message.createdAt, lang)}
                     </p>
                   </div>
@@ -131,7 +131,7 @@ export function Overview({
             </Link>
           </div>
           {orders.length === 0 ? (
-            <p className="py-8 text-center text-xs text-[#6b7590]">{t("admin.noOrders")}</p>
+            <p className="py-8 text-center text-xs text-[#c6cfdf]">{t("admin.noOrders")}</p>
           ) : (
             <ul className="divide-y divide-white/[0.05]">
               {orders.slice(0, 5).map((order) => (
@@ -143,7 +143,7 @@ export function Overview({
                     <p className="truncate text-xs font-semibold text-white">
                       {order.customerName}
                     </p>
-                    <p className="mt-0.5 truncate text-[11px] text-[#8b94aa]">
+                    <p className="mt-0.5 truncate text-[11px] text-[#dbe1ec]">
                       {order.serviceTitle}
                     </p>
                   </div>
@@ -162,7 +162,7 @@ export function Overview({
         </div>
       </div>
 
-      <div className="mt-6 rounded-2xl border border-white/[0.07] bg-white/[0.02] p-4 text-[11px] leading-relaxed text-[#6b7590]">
+      <div className="mt-6 rounded-2xl border border-white/[0.07] bg-white/[0.02] p-4 text-[11px] leading-relaxed text-[#c6cfdf]">
         {t("admin.authorizationNote")}
       </div>
     </div>

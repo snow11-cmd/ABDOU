@@ -19,6 +19,9 @@ export const dictionaries = {
     "nav.available": "متاح للتعاون",
     "lang.toEnglish": "التبديل إلى الإنجليزية",
     "lang.toArabic": "التبديل إلى العربية",
+    "theme.toggle": "تبديل الوضع الليلي والنهاري",
+    "theme.light": "الوضع النهاري",
+    "theme.dark": "الوضع الليلي",
 
     // ---------- hero ----------
     "hero.badge": "متاح لمشاريع جديدة",
@@ -26,9 +29,12 @@ export const dictionaries = {
     "hero.name": "أبو جاسم",
     "hero.role": "مطور ويب متكامل ومصمم تجارب رقمية",
     "hero.intro":
-      "أبني منتجات رقمية سريعة وأنيقة وقابلة للتوسع — من الفكرة الأولى إلى الإطلاق. خبرة في تطوير الويب الحديث وتجارب ثلاثية الأبعاد.",
+      "أبني منتجات رقمية سريعة وأنيقة وقابلة للتوسع — من الفكرة الأولى إلى الإطلاق. خبرة في تطوير الويب الحديث وتجارب رقمية مدروسة.",
     "hero.ctaWork": "استعرض أعمالي",
     "hero.ctaContact": "تواصل معي",
+    "hero.copyEmail": "انسخ البريد",
+    "hero.emailCopied": "تم نسخ البريد",
+    "hero.portraitAlt": "بورتريه تعريفي لأبو جاسم",
     "hero.scroll": "مرّر للأسفل",
     "hero.statYears": "سنوات خبرة",
     "hero.statProjects": "مشروع منجز",
@@ -91,6 +97,7 @@ export const dictionaries = {
     "work.demo": "معاينة مباشرة",
     "work.back": "العودة إلى الأعمال",
     "work.overview": "نظرة عامة",
+    "work.aboutProject": "عن المشروع",
     "work.stack": "التقنيات المستخدمة",
     "work.year": "السنة",
     "work.role": "الدور",
@@ -144,6 +151,7 @@ export const dictionaries = {
     "footer.rights": "جميع الحقوق محفوظة",
     "footer.built": "صُمم وبُني بعناية",
     "footer.top": "العودة للأعلى",
+    "footer.socials": "على الشبكات",
 
     // ---------- auth ----------
     "auth.signIn": "تسجيل الدخول",
@@ -352,7 +360,6 @@ export const dictionaries = {
     // ---------- home showcase ----------
     "home.workLabel": "مختارات",
     "home.workTitle": "أعمال تترك أثراً",
-    "home.workSubtitle": "ثلاثة مشاريع تجمع بين الفكرة القوية والتنفيذ الدقيق.",
     "home.viewAll": "كل الأعمال",
     "home.openCase": "افتح دراسة الحالة",
     "home.ctaLabel": "لنبدأ",
@@ -380,6 +387,9 @@ export const dictionaries = {
     "nav.available": "Open to collaboration",
     "lang.toEnglish": "Switch to English",
     "lang.toArabic": "Switch to Arabic",
+    "theme.toggle": "Toggle light and dark mode",
+    "theme.light": "Light mode",
+    "theme.dark": "Dark mode",
 
     // ---------- hero ----------
     "hero.badge": "Available for new projects",
@@ -387,9 +397,12 @@ export const dictionaries = {
     "hero.name": "Abu Jasem",
     "hero.role": "Full-Stack Developer & Digital Experience Designer",
     "hero.intro":
-      "I build fast, elegant, and scalable digital products — from the first idea to launch. Experienced in modern web development and 3D experiences.",
+      "I build fast, elegant, and scalable digital products — from the first idea to launch. Experienced in modern web development and considered digital experiences.",
     "hero.ctaWork": "View my work",
     "hero.ctaContact": "Contact me",
+    "hero.copyEmail": "Copy email",
+    "hero.emailCopied": "Email copied",
+    "hero.portraitAlt": "Portrait of Abu Jasem",
     "hero.scroll": "Scroll to explore",
     "hero.statYears": "Years of experience",
     "hero.statProjects": "Projects shipped",
@@ -456,6 +469,7 @@ export const dictionaries = {
     "work.demo": "Live demo",
     "work.back": "Back to work",
     "work.overview": "Overview",
+    "work.aboutProject": "About the project",
     "work.stack": "Tech stack",
     "work.year": "Year",
     "work.role": "Role",
@@ -509,6 +523,7 @@ export const dictionaries = {
     "footer.rights": "All rights reserved",
     "footer.built": "Designed & built with care",
     "footer.top": "Back to top",
+    "footer.socials": "Elsewhere",
 
     // ---------- auth ----------
     "auth.signIn": "Sign in",
@@ -720,7 +735,6 @@ export const dictionaries = {
     // ---------- home showcase ----------
     "home.workLabel": "Selected",
     "home.workTitle": "Work that leaves a mark",
-    "home.workSubtitle": "Three projects where strong ideas meet precise execution.",
     "home.viewAll": "All work",
     "home.openCase": "Open case study",
     "home.ctaLabel": "Let's begin",

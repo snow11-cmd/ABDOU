@@ -1,7 +1,6 @@
 "use client";
 
-import { CheckCircle2, Clock } from "lucide-react";
-
+import { CheckedIcon, ClockIcon } from "@/components/icons";
 import { Badge } from "@/components/ui/badge";
 import { ButtonLink } from "@/components/ui/button";
 import type { Order } from "@/lib/data/types";
@@ -24,40 +23,53 @@ export function OrderSuccess({ order, sandbox }: { order: Order; sandbox: boolea
   } as const;
 
   return (
-    <div className="mx-auto max-w-2xl pt-32 sm:pt-36">
-      <div className="card p-8 text-center sm:p-10">
-        <div className="mx-auto mb-6 grid h-16 w-16 place-items-center rounded-2xl border border-emerald-400/25 bg-emerald-400/10 text-emerald-300">
-          <CheckCircle2 className="h-8 w-8" />
+    <div className="mx-auto max-w-2xl px-4 pt-32 sm:pt-40">
+      <div className="rounded-[1.8rem] border border-black/[0.08] bg-white/90 p-6 text-center shadow-[0_25px_70px_-60px_rgba(0,0,0,0.5)] backdrop-blur sm:p-10 dark:border-white/[0.09] dark:bg-[#121214]/90">
+        <div className="mx-auto mb-6 grid size-16 place-items-center rounded-2xl border border-emerald-700/15 bg-emerald-50 text-emerald-700 dark:bg-emerald-950/40">
+          <CheckedIcon size={28} strokeWidth={1.6} aria-hidden="true" />
         </div>
-        <h1 className="text-2xl font-extrabold text-white sm:text-3xl">
+        <h1 className="type-section text-neutral-950 dark:text-[#f4f1ea]">
           {t("checkout.successTitle")}
         </h1>
-        <p className="mx-auto mt-3 max-w-md text-sm leading-relaxed text-[#8b94aa]">
+        <p className="mx-auto mt-3 max-w-md text-[13px] leading-[1.8] text-neutral-600 dark:text-neutral-200">
           {t("checkout.successDesc")}
         </p>
 
-        <dl className="mt-8 space-y-3 rounded-2xl border border-white/[0.07] bg-white/[0.02] p-5 text-start">
+        <dl className="mt-8 space-y-3 rounded-2xl border border-black/[0.07] bg-neutral-50/70 p-5 text-start dark:border-white/[0.08] dark:bg-white/[0.03]">
           <div className="flex items-center justify-between gap-4">
-            <dt className="text-xs text-[#6b7590]">{t("checkout.orderId")}</dt>
-            <dd className="font-mono text-xs font-semibold text-white" dir="ltr">
+            <dt className="text-[11px] text-neutral-600 dark:text-neutral-200">
+              {t("checkout.orderId")}
+            </dt>
+            <dd
+              className="font-mono text-[11px] font-semibold text-neutral-900 dark:text-neutral-100"
+              dir="ltr"
+            >
               {order.id}
             </dd>
           </div>
           <div className="flex items-center justify-between gap-4">
-            <dt className="text-xs text-[#6b7590]">{t("checkout.service")}</dt>
-            <dd className="text-sm font-semibold text-white">{order.serviceTitle}</dd>
+            <dt className="text-[11px] text-neutral-600 dark:text-neutral-200">
+              {t("checkout.service")}
+            </dt>
+            <dd className="text-[13px] font-medium text-neutral-900 dark:text-neutral-100">
+              {order.serviceTitle}
+            </dd>
           </div>
           <div className="flex items-center justify-between gap-4">
-            <dt className="text-xs text-[#6b7590]">{t("checkout.amount")}</dt>
-            <dd className="text-sm font-bold text-white">
+            <dt className="text-[11px] text-neutral-600 dark:text-neutral-200">
+              {t("checkout.amount")}
+            </dt>
+            <dd className="text-[13px] font-semibold text-neutral-950 dark:text-[#f4f1ea]">
               {formatMoney(order.amount, order.currency, lang)}
             </dd>
           </div>
           <div className="flex items-center justify-between gap-4">
-            <dt className="text-xs text-[#6b7590]">{t("checkout.status")}</dt>
+            <dt className="text-[11px] text-neutral-600 dark:text-neutral-200">
+              {t("checkout.status")}
+            </dt>
             <dd>
               <Badge tone={statusTone[order.status]}>
-                <Clock className="h-3 w-3" />
+                <ClockIcon size={12} strokeWidth={1.75} aria-hidden="true" />
                 {t(statusKey[order.status])}
               </Badge>
             </dd>
@@ -65,9 +77,11 @@ export function OrderSuccess({ order, sandbox }: { order: Order; sandbox: boolea
         </dl>
 
         {sandbox ? (
-          <div className="mt-5 rounded-xl border border-amber-400/20 bg-amber-400/[0.06] p-4 text-start">
-            <p className="text-[11px] font-bold text-amber-200">{t("checkout.sandboxTitle")}</p>
-            <p className="mt-1 text-[11px] leading-relaxed text-amber-100/70">
+          <div className="mt-5 rounded-xl border border-amber-700/15 bg-amber-50 p-4 text-start dark:bg-amber-950/40">
+            <p className="text-[11px] font-semibold text-amber-900 dark:text-amber-200">
+              {t("checkout.sandboxTitle")}
+            </p>
+            <p className="mt-1 text-[11px] leading-[1.8] text-amber-900 dark:text-amber-200/70">
               {t("checkout.sandboxNotice")}
             </p>
           </div>
@@ -86,8 +100,12 @@ export function OrderNotFound() {
 
   return (
     <div className="mx-auto max-w-xl px-4 pt-40 pb-24 text-center">
-      <h1 className="text-2xl font-bold text-white">{t("checkout.notFoundTitle")}</h1>
-      <p className="mt-3 text-sm leading-relaxed text-[#8b94aa]">{t("checkout.notFoundDesc")}</p>
+      <h1 className="type-section text-neutral-950 dark:text-[#f4f1ea]">
+        {t("checkout.notFoundTitle")}
+      </h1>
+      <p className="mt-3 text-[13px] leading-[1.8] text-neutral-600 dark:text-neutral-200">
+        {t("checkout.notFoundDesc")}
+      </p>
       <ButtonLink href="/services" className="mt-6">
         {t("checkout.backServices")}
       </ButtonLink>

@@ -26,8 +26,7 @@ import { createSupabaseBrowserClient } from "@/lib/supabase/client";
 import { isSupabaseConfigured } from "@/lib/utils";
 import { signInSchema } from "@/lib/validations";
 
-import { SetupRequiredNotice } from "./auth-shell";
-import { CinematicAuthShell } from "./cinematic-auth-shell";
+import { AuthShell, SetupRequiredNotice } from "./auth-shell";
 
 type FormValues = z.infer<typeof signInSchema>;
 
@@ -107,7 +106,7 @@ export function LoginForm({
   };
 
   return (
-    <CinematicAuthShell
+    <AuthShell
       title={t("auth.loginTitle")}
       subtitle={t("auth.loginSubtitle")}
       footer={
@@ -137,7 +136,7 @@ export function LoginForm({
             <Label htmlFor="email">{t("auth.email")}</Label>
             <div className="relative">
               <Mail
-                className="pointer-events-none absolute top-1/2 left-3.5 h-4 w-4 -translate-y-1/2 text-[#6f7a93]"
+                className="pointer-events-none absolute top-1/2 left-3.5 h-4 w-4 -translate-y-1/2 text-[#c9d2e2]"
                 aria-hidden="true"
               />
               <Input
@@ -159,7 +158,7 @@ export function LoginForm({
             <Label htmlFor="password">{t("auth.password")}</Label>
             <div className="relative">
               <Lock
-                className="pointer-events-none absolute top-1/2 left-3.5 h-4 w-4 -translate-y-1/2 text-[#6f7a93]"
+                className="pointer-events-none absolute top-1/2 left-3.5 h-4 w-4 -translate-y-1/2 text-[#c9d2e2]"
                 aria-hidden="true"
               />
               <Input
@@ -178,7 +177,7 @@ export function LoginForm({
                 onClick={() => setShowPassword((visible) => !visible)}
                 aria-label={t(showPassword ? "auth.hidePassword" : "auth.showPassword")}
                 aria-pressed={showPassword}
-                className="absolute top-1/2 right-2 grid h-8 w-8 -translate-y-1/2 place-items-center rounded-lg text-[#8b94aa] transition hover:bg-white/[0.06] hover:text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-400"
+                className="absolute top-1/2 right-2 grid h-8 w-8 -translate-y-1/2 place-items-center rounded-lg text-[#dbe1ec] transition hover:bg-white/[0.06] hover:text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-400"
               >
                 {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
               </button>
@@ -189,7 +188,7 @@ export function LoginForm({
           <div className="flex flex-wrap items-center justify-between gap-3">
             <label
               title={t("auth.rememberHint")}
-              className="inline-flex cursor-pointer items-center gap-2 text-xs text-[#9aa5bc] transition hover:text-[#d4dbeb]"
+              className="inline-flex cursor-pointer items-center gap-2 text-xs text-[#e2e7f0] transition hover:text-[#eef2f9]"
             >
               <span className="relative grid h-4 w-4 place-items-center">
                 <input
@@ -245,12 +244,12 @@ export function LoginForm({
             )}
           </Button>
 
-          <p className="flex items-center justify-center gap-1.5 text-[11px] leading-relaxed text-[#8b94aa]">
+          <p className="flex items-center justify-center gap-1.5 text-[11px] leading-relaxed text-[#dbe1ec]">
             <ShieldCheck className="h-3 w-3 text-emerald-400/70" />
             {t("auth.secureSession")}
           </p>
         </form>
       )}
-    </CinematicAuthShell>
+    </AuthShell>
   );
 }

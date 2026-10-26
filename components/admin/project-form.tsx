@@ -196,7 +196,7 @@ export function ProjectForm({ project }: { project?: Project }) {
         <section className="card p-5">
           <h2 className="mb-4 text-sm font-bold text-white">{t("admin.status")}</h2>
           <label className="flex cursor-pointer items-center justify-between gap-3 rounded-xl border border-white/[0.07] bg-white/[0.02] px-4 py-3">
-            <span className="text-xs text-[#c3ccdf]">{t("admin.projectPublished")}</span>
+            <span className="text-xs text-[#eef1f7]">{t("admin.projectPublished")}</span>
             <input
               type="checkbox"
               className="h-4 w-4 accent-[#4f7cff]"
@@ -204,7 +204,7 @@ export function ProjectForm({ project }: { project?: Project }) {
             />
           </label>
           <label className="mt-2 flex cursor-pointer items-center justify-between gap-3 rounded-xl border border-white/[0.07] bg-white/[0.02] px-4 py-3">
-            <span className="text-xs text-[#c3ccdf]">{t("admin.projectFeatured")}</span>
+            <span className="text-xs text-[#eef1f7]">{t("admin.projectFeatured")}</span>
             <input type="checkbox" className="h-4 w-4 accent-[#f59e0b]" {...register("featured")} />
           </label>
 
@@ -243,7 +243,7 @@ export function ProjectForm({ project }: { project?: Project }) {
           />
           <FieldError>{translate(errors.imageUrl?.message)}</FieldError>
 
-          <div className="my-4 flex items-center gap-3 text-[10px] tracking-wider text-[#5f6a84] uppercase">
+          <div className="my-4 flex items-center gap-3 text-[10px] tracking-wider text-[#b9c3d6] uppercase">
             <span className="h-px flex-1 bg-white/[0.07]" />
             {t("admin.or")}
             <span className="h-px flex-1 bg-white/[0.07]" />
@@ -253,9 +253,9 @@ export function ProjectForm({ project }: { project?: Project }) {
             type="file"
             accept="image/png,image/jpeg,image/webp,image/avif"
             onChange={(event) => setCoverFile(event.target.files?.[0] ?? null)}
-            className="block w-full cursor-pointer rounded-xl border border-dashed border-white/15 bg-white/[0.02] p-3 text-xs text-[#8b94aa] file:me-3 file:rounded-lg file:border-0 file:bg-[#4f7cff]/15 file:px-3 file:py-1.5 file:text-xs file:font-semibold file:text-white"
+            className="block w-full cursor-pointer rounded-xl border border-dashed border-white/15 bg-white/[0.02] p-3 text-xs text-[#dbe1ec] file:me-3 file:rounded-lg file:border-0 file:bg-[#4f7cff]/15 file:px-3 file:py-1.5 file:text-xs file:font-semibold file:text-white"
           />
-          <p className="mt-2 text-[10px] leading-relaxed text-[#5f6a84]">{t("admin.imageHelp")}</p>
+          <p className="mt-2 text-[10px] leading-relaxed text-[#b9c3d6]">{t("admin.imageHelp")}</p>
         </section>
 
         {serverError ? (

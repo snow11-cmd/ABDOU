@@ -12,7 +12,7 @@ export function Label({
   return (
     <label
       htmlFor={htmlFor}
-      className={cn("mb-2 block text-sm font-medium text-[#c9d2e4]", className)}
+      className={cn("mb-2 block text-sm font-medium text-slate-700", className)}
     >
       {children}
     </label>
@@ -45,7 +45,7 @@ export function Select({
 export function FieldError({ children, id }: { children?: React.ReactNode; id?: string }) {
   if (!children) return null;
   return (
-    <p id={id} className="mt-1.5 text-xs text-rose-300">
+    <p id={id} className="mt-1.5 text-[11px] text-rose-600">
       {children}
     </p>
   );

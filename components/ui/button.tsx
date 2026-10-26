@@ -15,32 +15,24 @@ export function buttonClasses({
   className?: string;
 } = {}) {
   const base =
-    "btn-3d group/btn relative inline-flex items-center justify-center rounded-full font-semibold transition-[filter,opacity] duration-300 disabled:cursor-not-allowed disabled:opacity-60 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cyan-300";
+    "inline-flex items-center justify-center gap-2 rounded-xl font-medium transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] disabled:pointer-events-none disabled:opacity-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-950 dark:focus-visible:outline-white";
   const sizes: Record<Size, string> = {
-    sm: "h-9 text-sm [--btn-px:1rem]",
-    md: "h-11 text-[0.95rem] [--btn-px:1.5rem]",
-    lg: "h-13 text-base [--btn-px:2rem]",
+    sm: "h-9 px-4 text-[11px]",
+    md: "h-11 px-5 text-[12px]",
+    lg: "h-12 px-6 text-sm",
   };
   const variants: Record<Variant, string> = {
     primary:
-      "btn-3d--primary bg-[linear-gradient(112deg,#a8ffe3_0%,#59edff_34%,#75a8ff_68%,#b69cff_100%)] text-[#031018] [text-shadow:0_1px_0_rgba(255,255,255,0.24)]",
+      "bg-neutral-950 text-white shadow-[0_14px_30px_-24px_rgba(0,0,0,0.65)] hover:-translate-y-0.5 hover:bg-neutral-800 dark:bg-[#f4f1ea] dark:text-neutral-950 dark:shadow-none dark:hover:bg-white",
     secondary:
-      "btn-3d--secondary border border-white/12 bg-white/[0.06] text-white backdrop-blur hover:border-cyan-200/25 hover:bg-white/[0.1]",
+      "border border-black/[0.09] bg-white text-neutral-900 hover:-translate-y-0.5 hover:border-black/[0.16] hover:shadow-[0_14px_30px_-24px_rgba(0,0,0,0.45)] dark:border-white/[0.12] dark:bg-white/[0.05] dark:text-neutral-100 dark:hover:border-white/[0.2] dark:hover:bg-white/[0.08] dark:hover:shadow-none",
     ghost:
-      "btn-3d--ghost text-[#c3cbdd] hover:bg-white/[0.06] hover:text-white",
+      "text-neutral-600 hover:bg-black/[0.05] hover:text-neutral-950 dark:text-neutral-100 dark:hover:bg-white/[0.07] dark:hover:text-white",
     outline:
-      "btn-3d--outline border border-white/15 text-white hover:border-cyan-300/55 hover:bg-cyan-300/10",
+      "border border-black/[0.12] text-neutral-900 hover:-translate-y-0.5 hover:border-black/[0.2] hover:bg-black/[0.03] dark:border-white/[0.16] dark:text-neutral-100 dark:hover:border-white/[0.26] dark:hover:bg-white/[0.05]",
   };
-  return cn(base, sizes[size], variants[variant], className);
-}
 
-function ButtonFaces({ children }: { children: React.ReactNode }) {
-  return (
-    <>
-      <span className="btn3d-depth" aria-hidden="true" />
-      <span className="btn3d-face">{children}</span>
-    </>
-  );
+  return cn(base, sizes[size], variants[variant], className);
 }
 
 export function Button({
@@ -59,7 +51,7 @@ export function Button({
       data-variant={variant ?? "primary"}
       {...props}
     >
-      <ButtonFaces>{children}</ButtonFaces>
+      {children}
     </button>
   );
 }
@@ -85,7 +77,7 @@ export function ButtonLink({
       data-variant={variant ?? "primary"}
       {...props}
     >
-      <ButtonFaces>{children}</ButtonFaces>
+      {children}
     </Link>
   );
 }
