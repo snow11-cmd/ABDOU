@@ -67,12 +67,12 @@ export function AdminSidebar({ name, email }: { name: string; email: string }) {
   const content = (
     <div className="flex h-full flex-col">
       <div className="flex items-center justify-between px-5 py-5">
-        <Logo tone="light" />
+        <Logo tone="auto" />
         <button
           type="button"
           onClick={() => setOpen(false)}
           aria-label={t("nav.close")}
-          className="grid h-9 w-9 place-items-center rounded-lg border border-white/10 text-[#eaeef5] lg:hidden"
+          className="grid h-9 w-9 place-items-center rounded-lg border border-white/10 text-[#f4f1ea] lg:hidden"
         >
           <X className="h-4 w-4" />
         </button>
@@ -80,12 +80,12 @@ export function AdminSidebar({ name, email }: { name: string; email: string }) {
 
       <div className="mx-4 mb-5 rounded-xl border border-white/[0.07] bg-white/[0.03] p-3">
         <div className="flex items-center gap-2.5">
-          <span className="grid h-9 w-9 shrink-0 place-items-center rounded-full bg-gradient-to-br from-[#4f7cff] to-[#8b5cf6] text-xs font-bold text-white">
+          <span className="grid h-9 w-9 shrink-0 place-items-center rounded-full bg-gradient-to-br from-[#c6a15b] to-[#8a6730] text-xs font-bold text-[#0b0b0c]">
             {(name || email || "A").charAt(0).toUpperCase()}
           </span>
           <div className="min-w-0">
-            <p className="truncate text-xs font-semibold text-white">{name || "Admin"}</p>
-            <p className="truncate text-[10px] text-[#c9d2e2]" dir="ltr">
+            <p className="truncate text-xs font-semibold text-[#f4f1ea]">{name || "Admin"}</p>
+            <p className="truncate text-[10px] text-[#b8b2a7]" dir="ltr">
               {email}
             </p>
           </div>
@@ -103,13 +103,13 @@ export function AdminSidebar({ name, email }: { name: string; email: string }) {
               className={cn(
                 "flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium transition",
                 active
-                  ? "border border-[#4f7cff]/25 bg-[#4f7cff]/12 text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.06)]"
-                  : "border border-transparent text-[#dbe1ec] hover:bg-white/[0.04] hover:text-white",
+                  ? "border border-[#c6a15b]/30 bg-[#c6a15b]/12 text-[#f4f1ea] shadow-[inset_0_1px_0_rgba(255,255,255,0.06)]"
+                  : "border border-transparent text-[#d6d1c7] hover:bg-white/[0.04] hover:text-[#f4f1ea]",
               )}
             >
-              <item.icon className={cn("h-4 w-4", active ? "text-[#8ab4ff]" : "text-[#c9d2e2]")} />
+              <item.icon className={cn("h-4 w-4", active ? "text-[#d9b877]" : "text-[#b8b2a7]")} />
               {t(item.key)}
-              {active ? <span className="ms-auto h-1.5 w-1.5 rounded-full bg-[#4f7cff]" /> : null}
+              {active ? <span className="ms-auto h-1.5 w-1.5 rounded-full bg-[#c6a15b]" /> : null}
             </Link>
           );
         })}
@@ -117,29 +117,29 @@ export function AdminSidebar({ name, email }: { name: string; email: string }) {
 
       <div className="space-y-1 border-t border-white/[0.06] p-3">
         <div className="flex items-center justify-between px-3 py-2">
-          <span className="text-[10px] tracking-wider text-[#b9c3d6] uppercase">
+          <span className="text-[10px] tracking-wider text-[#a8a39a] uppercase">
             {t("admin.language")}
           </span>
           <LanguageSwitcher compact />
         </div>
         <Link
           href="/"
-          className="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-[#dbe1ec] transition hover:bg-white/[0.04] hover:text-white"
+          className="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-[#d6d1c7] transition hover:bg-white/[0.04] hover:text-[#f4f1ea]"
         >
-          <ExternalLink className="h-4 w-4 text-[#c9d2e2]" />
+          <ExternalLink className="h-4 w-4 text-[#b8b2a7]" />
           {t("admin.viewSite")}
         </Link>
         <button
           type="button"
           onClick={signOut}
           disabled={signingOut}
-          className="flex w-full items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-[#dbe1ec] transition hover:bg-rose-500/10 hover:text-rose-200 disabled:opacity-60"
+          className="flex w-full items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-[#d6d1c7] transition hover:bg-rose-500/10 hover:text-rose-200 disabled:opacity-60"
         >
           <LogOut className="h-4 w-4" />
           {signingOut ? t("auth.loading") : t("nav.logout")}
         </button>
-        <div className="mt-3 flex items-center gap-2 rounded-lg border border-white/[0.06] bg-white/[0.02] px-3 py-2 text-[10px] text-[#b9c3d6]">
-          <Sparkles className="h-3 w-3 text-[#8ab4ff]" />
+        <div className="mt-3 flex items-center gap-2 rounded-lg border border-white/[0.06] bg-white/[0.02] px-3 py-2 text-[10px] text-[#a8a39a]">
+          <Sparkles className="h-3 w-3 text-[#d9b877]" />
           {t("admin.rlsProtected")}
         </div>
       </div>
@@ -149,22 +149,22 @@ export function AdminSidebar({ name, email }: { name: string; email: string }) {
   return (
     <>
       {/* Mobile top bar */}
-      <div className="sticky top-0 z-40 flex items-center justify-between border-b border-white/[0.06] bg-[#05070d]/90 px-4 py-3 backdrop-blur-lg lg:hidden">
-        <Logo tone="light" />
+      <div className="sticky top-0 z-40 flex items-center justify-between border-b border-white/[0.06] bg-[#0b0b0c]/90 px-4 py-3 backdrop-blur-lg lg:hidden">
+        <Logo tone="auto" />
         <button
           type="button"
           onClick={() => setOpen(true)}
           aria-label={t("nav.menu")}
           aria-expanded={open}
           aria-controls="admin-mobile-menu"
-          className="grid h-10 w-10 place-items-center rounded-xl border border-white/10 bg-white/[0.04] text-white"
+          className="grid h-10 w-10 place-items-center rounded-xl border border-white/10 bg-white/[0.04] text-[#f4f1ea]"
         >
           <Menu className="h-5 w-5" />
         </button>
       </div>
 
       {/* Desktop sidebar */}
-      <aside className="fixed inset-y-0 start-0 z-30 hidden w-64 border-e border-white/[0.06] bg-[#060911] lg:block">
+      <aside className="fixed inset-y-0 start-0 z-30 hidden w-64 border-e border-white/[0.06] bg-[#0b0b0c] lg:block">
         {content}
       </aside>
 
@@ -181,7 +181,7 @@ export function AdminSidebar({ name, email }: { name: string; email: string }) {
             role="dialog"
             aria-modal="true"
             aria-label={t("admin.navLabel")}
-            className="absolute inset-y-0 start-0 w-[280px] border-e border-white/10 bg-[#060911] shadow-2xl"
+            className="absolute inset-y-0 start-0 w-[280px] border-e border-white/10 bg-[#0b0b0c] shadow-2xl"
           >
             {content}
           </div>

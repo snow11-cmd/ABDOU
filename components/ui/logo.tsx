@@ -37,7 +37,7 @@ export function Logo({
 }: {
   className?: string;
   withText?: boolean;
-  tone?: "dark" | "light";
+  tone?: "dark" | "light" | "auto";
 }) {
   return (
     <Link
@@ -49,6 +49,7 @@ export function Logo({
         className={cn(
           "transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.04]",
           tone === "light" && "bg-white text-neutral-950",
+          tone === "auto" && "bg-neutral-950 text-white dark:bg-[#f4f1ea] dark:text-neutral-950",
         )}
       />
       {withText ? (
@@ -56,7 +57,9 @@ export function Logo({
           <span
             className={cn(
               "text-[0.95rem] font-semibold whitespace-nowrap",
-              tone === "light" ? "text-white" : "text-neutral-950",
+              tone === "light" && "text-white",
+              tone === "dark" && "text-neutral-950",
+              tone === "auto" && "text-neutral-950 dark:text-[#f4f1ea]",
             )}
           >
             Abu Jasem
@@ -64,7 +67,9 @@ export function Logo({
           <span
             className={cn(
               "mt-1 text-[0.65rem] font-medium tracking-[0.18em] uppercase",
-              tone === "light" ? "text-white/75" : "text-neutral-600",
+              tone === "light" && "text-white/75",
+              tone === "dark" && "text-neutral-600",
+              tone === "auto" && "text-neutral-600 dark:text-neutral-300",
             )}
           >
             Digital Studio

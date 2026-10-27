@@ -211,7 +211,7 @@ export function ServicesManager({ services }: { services: Service[] }) {
           </div>
 
           <label className="mt-4 flex cursor-pointer items-center gap-2 text-xs text-[#eef1f7]">
-            <input type="checkbox" className="h-4 w-4 accent-[#4f7cff]" {...register("active")} />
+            <input type="checkbox" className="h-4 w-4 accent-[#c6a15b]" {...register("active")} />
             {t("admin.active")}
           </label>
 
@@ -266,7 +266,7 @@ export function ServicesManager({ services }: { services: Service[] }) {
                 <button
                   type="button"
                   onClick={() => openEdit(service)}
-                  className="inline-flex flex-1 items-center justify-center gap-1.5 rounded-lg border border-white/10 bg-white/[0.03] py-2 text-[11px] font-medium text-[#eef1f7] transition hover:border-[#4f7cff]/40 hover:text-white"
+                  className="inline-flex flex-1 items-center justify-center gap-1.5 rounded-lg border border-white/10 bg-white/[0.03] py-2 text-[11px] font-medium text-[#eef1f7] transition hover:border-[#c6a15b]/40 hover:text-white"
                 >
                   <Edit3 className="h-3.5 w-3.5" />
                   {t("admin.edit")}

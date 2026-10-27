@@ -98,7 +98,7 @@ export function ProjectsTable({ projects }: { projects: Project[] }) {
               className={cn(
                 "rounded-full border px-3.5 py-2 text-xs font-semibold transition",
                 status === tab.key
-                  ? "border-[#4f7cff]/50 bg-[#4f7cff]/15 text-white"
+                  ? "border-[#c6a15b]/50 bg-[#c6a15b]/15 text-white"
                   : "border-white/10 bg-white/[0.03] text-[#dbe1ec] hover:text-white",
               )}
             >
@@ -181,7 +181,7 @@ export function ProjectsTable({ projects }: { projects: Project[] }) {
                 <div className="flex items-center gap-2">
                   <Link
                     href={`/admin/projects/${project.id}`}
-                    className="grid h-8 w-8 place-items-center rounded-lg border border-white/10 bg-white/[0.03] text-[#eaeef5] transition hover:border-[#4f7cff]/40 hover:text-white"
+                    className="grid h-8 w-8 place-items-center rounded-lg border border-white/10 bg-white/[0.03] text-[#eaeef5] transition hover:border-[#c6a15b]/40 hover:text-white"
                     aria-label={t("admin.edit")}
                   >
                     <Edit3 className="h-3.5 w-3.5" />

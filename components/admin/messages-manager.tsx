@@ -57,13 +57,13 @@ export function MessagesManager({ messages }: { messages: ContactMessage[] }) {
             className={cn(
               "rounded-full border px-4 py-2 text-xs font-semibold transition",
               filter === tab.key
-                ? "border-[#4f7cff]/50 bg-[#4f7cff]/15 text-white"
+                ? "border-[#c6a15b]/50 bg-[#c6a15b]/15 text-white"
                 : "border-white/10 bg-white/[0.03] text-[#dbe1ec] hover:text-white",
             )}
           >
             {t(tab.label)}
             {tab.key === "unread" ? (
-              <span className="ms-1.5 rounded-full bg-[#4f7cff]/25 px-1.5 py-0.5 text-[10px]">
+              <span className="ms-1.5 rounded-full bg-[#c6a15b]/25 px-1.5 py-0.5 text-[10px]">
                 {messages.filter((message) => !message.read).length}
               </span>
             ) : null}
@@ -86,7 +86,7 @@ export function MessagesManager({ messages }: { messages: ContactMessage[] }) {
                   "overflow-hidden rounded-2xl border transition",
                   message.read
                     ? "border-white/[0.06] bg-white/[0.015]"
-                    : "border-[#4f7cff]/20 bg-[#4f7cff]/[0.045]",
+                    : "border-[#c6a15b]/20 bg-[#c6a15b]/[0.045]",
                 )}
               >
                 <div className="flex items-start gap-3 p-4 sm:items-center sm:p-5">
@@ -101,7 +101,7 @@ export function MessagesManager({ messages }: { messages: ContactMessage[] }) {
                         "grid h-9 w-9 shrink-0 place-items-center rounded-full text-xs font-bold",
                         message.read
                           ? "bg-white/[0.05] text-[#dbe1ec]"
-                          : "bg-gradient-to-br from-[#4f7cff] to-[#8b5cf6] text-white",
+                          : "bg-gradient-to-br from-[#c6a15b] to-[#8a6730] text-white",
                       )}
                     >
                       {message.name.charAt(0).toUpperCase()}
@@ -172,7 +172,7 @@ export function MessagesManager({ messages }: { messages: ContactMessage[] }) {
                       <button
                         type="button"
                         onClick={() => markRead(message)}
-                        className="inline-flex items-center gap-1.5 text-[#8ab4ff] hover:text-white"
+                        className="inline-flex items-center gap-1.5 text-[#d9b877] hover:text-white"
                       >
                         <Check className="h-3 w-3" />
                         {message.read ? t("admin.markUnread") : t("admin.markRead")}

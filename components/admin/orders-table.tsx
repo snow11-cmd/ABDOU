@@ -58,7 +58,7 @@ export function OrdersTable({ orders }: { orders: Order[] }) {
             className={cn(
               "rounded-full border px-3.5 py-2 text-xs font-semibold transition",
               filter === tab.key
-                ? "border-[#4f7cff]/50 bg-[#4f7cff]/15 text-white"
+                ? "border-[#c6a15b]/50 bg-[#c6a15b]/15 text-white"
                 : "border-white/10 bg-white/[0.03] text-[#dbe1ec] hover:text-white",
             )}
           >
@@ -115,7 +115,7 @@ export function OrdersTable({ orders }: { orders: Order[] }) {
                     value={order.status}
                     disabled={busyId === order.id}
                     onChange={(event) => changeStatus(order, event.target.value as OrderStatus)}
-                    className="rounded-lg border border-white/10 bg-[#0a0e18] px-2 py-1.5 text-[11px] text-[#eef1f7] focus:border-[#4f7cff]/60 focus:outline-none disabled:opacity-50"
+                    className="rounded-lg border border-white/10 bg-[#0a0e18] px-2 py-1.5 text-[11px] text-[#eef1f7] focus:border-[#c6a15b]/60 focus:outline-none disabled:opacity-50"
                   >
                     <option value="pending">{t("checkout.pending")}</option>
                     <option value="paid">{t("checkout.paid")}</option>

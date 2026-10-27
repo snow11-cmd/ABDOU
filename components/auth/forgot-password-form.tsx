@@ -61,7 +61,7 @@ export function ForgotPasswordForm() {
       title={t("auth.resetTitle")}
       subtitle={t("auth.resetDesc")}
       footer={
-        <Link href="/login" className="font-semibold text-[#9db8ff] hover:text-white">
+        <Link href="/login" className="auth-link">
           {t("auth.backToLogin")}
         </Link>
       }
@@ -69,7 +69,7 @@ export function ForgotPasswordForm() {
       {!configured ? (
         <SetupRequiredNotice />
       ) : sent ? (
-        <div className="rounded-2xl border border-emerald-400/25 bg-emerald-400/10 p-5 text-sm text-emerald-200">
+        <div className="rounded-2xl border border-emerald-600/25 bg-emerald-500/10 p-5 text-sm text-emerald-900 dark:border-emerald-400/25 dark:bg-emerald-400/10 dark:text-emerald-200">
           <div className="flex items-center gap-2 font-semibold">
             <MailCheck className="h-4 w-4" />
             {t("auth.resetSent")}
@@ -94,7 +94,7 @@ export function ForgotPasswordForm() {
           {serverError ? (
             <div
               role="alert"
-              className="flex items-start gap-2 rounded-xl border border-rose-400/25 bg-rose-400/10 px-4 py-3 text-sm text-rose-200"
+              className="flex items-start gap-2 rounded-xl border border-rose-600/25 bg-rose-500/10 px-4 py-3 text-sm text-rose-900 dark:border-rose-400/25 dark:bg-rose-400/10 dark:text-rose-200"
             >
               <AlertCircle className="mt-0.5 h-4 w-4 shrink-0" />
               {serverError}

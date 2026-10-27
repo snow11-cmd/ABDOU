@@ -234,6 +234,46 @@ button {
   opacity: 1;
 }
 
+/* The admin area is always dark; the public site flips with the theme. */
+.dark .card {
+  border-color: rgba(255, 255, 255, 0.09);
+  background:
+    linear-gradient(165deg, rgba(255, 255, 255, 0.045), rgba(255, 255, 255, 0.018)),
+    radial-gradient(120% 100% at 0% 0%, rgba(198, 161, 91, 0.08), transparent 55%);
+  background-color: #121214;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.06),
+    0 26px 60px -48px rgba(0, 0, 0, 0.95);
+}
+
+.dark .card::before {
+  background: linear-gradient(
+    140deg,
+    rgba(198, 161, 91, 0.35),
+    transparent 35%,
+    transparent 70%,
+    rgba(255, 255, 255, 0.18)
+  );
+}
+
+.dark .card::after {
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(198, 161, 91, 0.65),
+    rgba(255, 255, 255, 0.25),
+    transparent
+  );
+}
+
+.dark .card:hover {
+  border-color: rgba(255, 255, 255, 0.16);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.08),
+    0 32px 70px -48px rgba(0, 0, 0, 1),
+    0 0 46px -30px rgba(198, 161, 91, 0.18);
+}
+
 /* ---------- gradients / glow ---------- */
 .text-gradient {
   background: linear-gradient(
@@ -430,21 +470,26 @@ button {
   border-color: rgba(180, 35, 24, 0.55);
 }
 
-/* Auth pages use a dark portal, so labels and the primary action need a
-   light-on-dark treatment instead of the admin defaults. */
-.auth-form label {
-  color: #e6ecf6;
+/* Auth pages inherit the editorial palette; links use the gold accent. */
+.auth-link {
+  font-weight: 600;
+  color: #8a6730;
+  text-decoration: underline;
+  text-decoration-color: rgba(198, 161, 91, 0.5);
+  text-underline-offset: 4px;
+  transition:
+    color 0.25s ease,
+    text-decoration-color 0.25s ease;
 }
-.auth-form label:hover {
-  color: #ffffff;
+.auth-link:hover {
+  color: #6f5225;
+  text-decoration-color: currentColor;
 }
-.auth-form button[type="submit"] {
-  border: 1px solid rgba(255, 255, 255, 0.16);
-  background: #ffffff;
-  color: #0a0a0a;
+.dark .auth-link {
+  color: #d9b877;
 }
-.auth-form button[type="submit"]:hover {
-  background: #e8ecf4;
+.dark .auth-link:hover {
+  color: #f0d7a4;
 }
 
 /* ---------- reduced motion ---------- */
@@ -593,6 +638,7 @@ html[dir="ltr"] .site-theme {
   --frame: #0b0b0c;
   --cursor-soft: rgba(244, 241, 234, 0.38);
   --cursor-strong: rgba(198, 161, 91, 0.95);
+  color-scheme: dark;
   background: var(--background);
   color: var(--foreground);
 }

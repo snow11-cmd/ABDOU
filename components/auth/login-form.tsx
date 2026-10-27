@@ -112,7 +112,7 @@ export function LoginForm({
       footer={
         <>
           {t("auth.noAccount")}{" "}
-          <Link href="/signup" className="font-semibold text-[#9db8ff] hover:text-white">
+          <Link href="/signup" className="auth-link">
             {t("auth.createAccount")}
           </Link>
         </>
@@ -125,7 +125,7 @@ export function LoginForm({
           {forbidden || authError ? (
             <div
               role="alert"
-              className="flex items-start gap-2 rounded-xl border border-amber-400/25 bg-amber-400/10 px-4 py-3 text-sm text-amber-100"
+              className="flex items-start gap-2 rounded-xl border border-amber-600/25 bg-amber-500/10 px-4 py-3 text-sm text-amber-900 dark:border-amber-400/25 dark:bg-amber-400/10 dark:text-amber-100"
             >
               <AlertCircle className="mt-0.5 h-4 w-4 shrink-0" />
               {t(forbidden ? "auth.forbidden" : "auth.callbackError")}
@@ -136,7 +136,7 @@ export function LoginForm({
             <Label htmlFor="email">{t("auth.email")}</Label>
             <div className="relative">
               <Mail
-                className="pointer-events-none absolute top-1/2 left-3.5 h-4 w-4 -translate-y-1/2 text-[#c9d2e2]"
+                className="pointer-events-none absolute top-1/2 left-3.5 h-4 w-4 -translate-y-1/2 text-[var(--muted-foreground)]"
                 aria-hidden="true"
               />
               <Input
@@ -158,7 +158,7 @@ export function LoginForm({
             <Label htmlFor="password">{t("auth.password")}</Label>
             <div className="relative">
               <Lock
-                className="pointer-events-none absolute top-1/2 left-3.5 h-4 w-4 -translate-y-1/2 text-[#c9d2e2]"
+                className="pointer-events-none absolute top-1/2 left-3.5 h-4 w-4 -translate-y-1/2 text-[var(--muted-foreground)]"
                 aria-hidden="true"
               />
               <Input
@@ -177,7 +177,7 @@ export function LoginForm({
                 onClick={() => setShowPassword((visible) => !visible)}
                 aria-label={t(showPassword ? "auth.hidePassword" : "auth.showPassword")}
                 aria-pressed={showPassword}
-                className="absolute top-1/2 right-2 grid h-8 w-8 -translate-y-1/2 place-items-center rounded-lg text-[#dbe1ec] transition hover:bg-white/[0.06] hover:text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-400"
+                className="absolute top-1/2 right-2 grid h-8 w-8 -translate-y-1/2 place-items-center rounded-lg text-[var(--muted-foreground)] transition hover:bg-black/[0.05] hover:text-[var(--foreground)] focus-visible:outline-2 focus-visible:outline-offset-2 dark:hover:bg-white/[0.06]"
               >
                 {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
               </button>
@@ -188,7 +188,7 @@ export function LoginForm({
           <div className="flex flex-wrap items-center justify-between gap-3">
             <label
               title={t("auth.rememberHint")}
-              className="inline-flex cursor-pointer items-center gap-2 text-xs text-[#e2e7f0] transition hover:text-[#eef2f9]"
+              className="inline-flex cursor-pointer items-center gap-2 text-xs text-[var(--muted-foreground)] transition hover:text-[var(--foreground)]"
             >
               <span className="relative grid h-4 w-4 place-items-center">
                 <input
@@ -205,17 +205,14 @@ export function LoginForm({
                       }
                     }
                   }}
-                  className="peer h-4 w-4 cursor-pointer appearance-none rounded-[5px] border border-white/20 bg-white/[0.04] transition checked:border-[#6d8cff] checked:bg-[#5b7cff] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-400"
+                  className="peer h-4 w-4 cursor-pointer appearance-none rounded-[5px] border border-[var(--input)] bg-[var(--card)] transition checked:border-[#c6a15b] checked:bg-[#c6a15b] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#a8813f] dark:focus-visible:outline-[#d9b877]"
                 />
-                <Check className="pointer-events-none absolute h-3 w-3 scale-75 text-white opacity-0 transition peer-checked:scale-100 peer-checked:opacity-100" />
+                <Check className="pointer-events-none absolute h-3 w-3 scale-75 text-neutral-950 opacity-0 transition peer-checked:scale-100 peer-checked:opacity-100" />
               </span>
               {t("auth.remember")}
               <span className="sr-only">— {t("auth.rememberHint")}</span>
             </label>
-            <Link
-              href="/forgot-password"
-              className="text-xs font-medium text-[#8ab4ff] transition hover:text-white"
-            >
+            <Link href="/forgot-password" className="auth-link text-xs">
               {t("auth.forgot")}
             </Link>
           </div>
@@ -223,7 +220,7 @@ export function LoginForm({
           {serverError ? (
             <div
               role="alert"
-              className="flex items-start gap-2 rounded-xl border border-rose-400/25 bg-rose-400/10 px-4 py-3 text-sm text-rose-200"
+              className="flex items-start gap-2 rounded-xl border border-rose-600/25 bg-rose-500/10 px-4 py-3 text-sm text-rose-900 dark:border-rose-400/25 dark:bg-rose-400/10 dark:text-rose-200"
             >
               <AlertCircle className="mt-0.5 h-4 w-4 shrink-0" />
               {serverError}
@@ -244,8 +241,8 @@ export function LoginForm({
             )}
           </Button>
 
-          <p className="flex items-center justify-center gap-1.5 text-[11px] leading-relaxed text-[#dbe1ec]">
-            <ShieldCheck className="h-3 w-3 text-emerald-400/70" />
+          <p className="flex items-center justify-center gap-1.5 text-[11px] leading-relaxed text-[var(--muted-foreground)]">
+            <ShieldCheck className="h-3 w-3 text-emerald-600 dark:text-emerald-400/70" />
             {t("auth.secureSession")}
           </p>
         </form>

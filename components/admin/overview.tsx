@@ -27,14 +27,14 @@ export function Overview({
       value: stats.projects,
       hint: `${stats.published} ${t("admin.statPublished")}`,
       icon: FolderKanban,
-      accent: "from-[#4f7cff]/20 text-[#8ab4ff]",
+      accent: "from-[#c6a15b]/20 text-[#d9b877]",
     },
     {
       label: t("admin.statMessages"),
       value: stats.unreadMessages,
       hint: t("admin.messages"),
       icon: Mail,
-      accent: "from-[#8b5cf6]/20 text-[#c4b5fd]",
+      accent: "from-[#a8a39a]/20 text-[#d6d1c7]",
     },
     {
       label: t("admin.statOrders"),
@@ -88,7 +88,7 @@ export function Overview({
             <h2 className="text-sm font-bold text-white">{t("admin.recentMessages")}</h2>
             <Link
               href="/admin/messages"
-              className="inline-flex items-center gap-1 text-xs text-[#8ab4ff] hover:text-white"
+              className="inline-flex items-center gap-1 text-xs text-[#d9b877] hover:text-[#f4f1ea]"
             >
               {t("admin.messages")}
               <ArrowUpLeft className="h-3.5 w-3.5" />
@@ -124,7 +124,7 @@ export function Overview({
             <h2 className="text-sm font-bold text-white">{t("admin.recentOrders")}</h2>
             <Link
               href="/admin/orders"
-              className="inline-flex items-center gap-1 text-xs text-[#8ab4ff] hover:text-white"
+              className="inline-flex items-center gap-1 text-xs text-[#d9b877] hover:text-[#f4f1ea]"
             >
               {t("admin.orders")}
               <ArrowUpLeft className="h-3.5 w-3.5" />
@@ -136,7 +136,7 @@ export function Overview({
             <ul className="divide-y divide-white/[0.05]">
               {orders.slice(0, 5).map((order) => (
                 <li key={order.id} className="flex items-center gap-3 py-3">
-                  <span className="grid h-8 w-8 shrink-0 place-items-center rounded-full bg-white/[0.05] text-[#8ab4ff]">
+                  <span className="grid h-8 w-8 shrink-0 place-items-center rounded-full bg-white/[0.05] text-[#d9b877]">
                     <Send className="h-3.5 w-3.5" />
                   </span>
                   <div className="min-w-0 flex-1">

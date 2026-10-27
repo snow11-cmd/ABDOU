@@ -199,7 +199,7 @@ export function ProjectForm({ project }: { project?: Project }) {
             <span className="text-xs text-[#eef1f7]">{t("admin.projectPublished")}</span>
             <input
               type="checkbox"
-              className="h-4 w-4 accent-[#4f7cff]"
+              className="h-4 w-4 accent-[#c6a15b]"
               {...register("published")}
             />
           </label>
@@ -230,7 +230,7 @@ export function ProjectForm({ project }: { project?: Project }) {
 
         <section className="card p-5">
           <h2 className="mb-4 flex items-center gap-2 text-sm font-bold text-white">
-            <ImagePlus className="h-4 w-4 text-[#8ab4ff]" />
+            <ImagePlus className="h-4 w-4 text-[#d9b877]" />
             {t("admin.projectImage")}
           </h2>
           <Label htmlFor="imageUrl">URL</Label>
@@ -253,7 +253,7 @@ export function ProjectForm({ project }: { project?: Project }) {
             type="file"
             accept="image/png,image/jpeg,image/webp,image/avif"
             onChange={(event) => setCoverFile(event.target.files?.[0] ?? null)}
-            className="block w-full cursor-pointer rounded-xl border border-dashed border-white/15 bg-white/[0.02] p-3 text-xs text-[#dbe1ec] file:me-3 file:rounded-lg file:border-0 file:bg-[#4f7cff]/15 file:px-3 file:py-1.5 file:text-xs file:font-semibold file:text-white"
+            className="block w-full cursor-pointer rounded-xl border border-dashed border-white/15 bg-white/[0.02] p-3 text-xs text-[#dbe1ec] file:me-3 file:rounded-lg file:border-0 file:bg-[#c6a15b]/15 file:px-3 file:py-1.5 file:text-xs file:font-semibold file:text-white"
           />
           <p className="mt-2 text-[10px] leading-relaxed text-[#b9c3d6]">{t("admin.imageHelp")}</p>
         </section>
