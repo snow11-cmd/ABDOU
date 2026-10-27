@@ -1,3 +1,7 @@
+const deployedHost = (
+  process.env.VERCEL_PROJECT_PRODUCTION_URL ?? process.env.VERCEL_URL
+)?.replace(/^https?:\/\//, "");
+
 export const siteConfig = {
   descriptionAr:
     "أبو جاسم — مطور ويب متكامل ومصمم تجارب رقمية. أبني مواقع ومنتجات رقمية سريعة، أنيقة، وقابلة للتوسع باستخدام Next.js وReact وTypeScript.",
@@ -14,6 +18,8 @@ export const siteConfig = {
     telegram: "https://t.me/abo_jasem_info",
     x: "https://x.com/",
   },
-  url: process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000",
+  url: deployedHost
+    ? `https://${deployedHost}`
+    : (process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000"),
   whatsapp: "970000000000",
 } as const;

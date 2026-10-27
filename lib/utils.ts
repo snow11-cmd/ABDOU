@@ -27,7 +27,12 @@ export function formatMoney(amount: number, currency = "USD", locale: "ar" | "en
 }
 
 export function absoluteUrl(path = "") {
-  const base = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
+  const deployedHost = (
+    process.env.VERCEL_PROJECT_PRODUCTION_URL ?? process.env.VERCEL_URL
+  )?.replace(/^https?:\/\//, "");
+  const base = deployedHost
+    ? `https://${deployedHost}`
+    : (process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000");
   return `${base.replace(/\/$/, "")}${path.startsWith("/") ? path : `/${path}`}`;
 }
 
