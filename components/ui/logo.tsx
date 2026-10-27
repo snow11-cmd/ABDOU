@@ -25,7 +25,7 @@ export function LogoMark({
         className,
       )}
     >
-      AJ
+      AB
     </span>
   );
 }

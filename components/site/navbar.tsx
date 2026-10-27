@@ -89,7 +89,7 @@ export function Navbar() {
             aria-label={t("nav.home")}
             className="group grid size-9 place-items-center rounded-full bg-neutral-950 text-[9px] font-bold tracking-[0.08em] text-white transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] hover:scale-[1.04] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black dark:bg-[#f4f1ea] dark:text-neutral-950 dark:focus-visible:outline-white"
           >
-            AJ
+            AB
           </Link>
 
           <nav aria-label={t("nav.main")} className="hidden md:block">
