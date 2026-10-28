@@ -36,6 +36,10 @@ export function absoluteUrl(path = "") {
   return `${base.replace(/\/$/, "")}${path.startsWith("/") ? path : `/${path}`}`;
 }
 
+export function gmailComposeUrl(email: string) {
+  return `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(email)}`;
+}
+
 export function isSupabaseConfigured() {
   return Boolean(process.env.NEXT_PUBLIC_SUPABASE_URL && process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY);
 }

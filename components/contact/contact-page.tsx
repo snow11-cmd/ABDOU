@@ -26,7 +26,7 @@ import { StatusDot } from "@/components/ui/status-dot";
 import type { SiteSettings } from "@/lib/data/types";
 import type { DictKey } from "@/lib/i18n/dictionaries";
 import { useI18n } from "@/lib/i18n/provider";
-import { isSupabaseConfigured } from "@/lib/utils";
+import { gmailComposeUrl, isSupabaseConfigured } from "@/lib/utils";
 import { contactSchema, type ContactInput } from "@/lib/validations";
 
 function digits(value: string) {
@@ -139,7 +139,9 @@ export function ContactPageContent({
             <Reveal>
               <IconHoverContext.Provider value={hoveredRow === "email"}>
                 <a
-                  href={`mailto:${settings.email}`}
+                  href={gmailComposeUrl(settings.email)}
+                  target="_blank"
+                  rel="noreferrer noopener"
                   {...rowHover("email")}
                   className="group flex items-center gap-4 rounded-[1.5rem] border border-black/[0.08] bg-white/80 p-4 backdrop-blur transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-0.5 hover:bg-white hover:shadow-[0_20px_45px_-40px_rgba(0,0,0,0.5)] dark:border-white/[0.09] dark:bg-white/[0.035] dark:hover:bg-white/[0.07]"
                 >

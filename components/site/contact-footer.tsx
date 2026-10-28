@@ -17,6 +17,7 @@ import { FadeIn } from "@/components/ui/motion-primitives";
 import { StatusDot } from "@/components/ui/status-dot";
 import type { SiteSettings } from "@/lib/data/types";
 import { useI18n } from "@/lib/i18n/provider";
+import { gmailComposeUrl } from "@/lib/utils";
 
 const MASK =
   "radial-gradient(ellipse 95% 120% at 50% 50%, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.7) 46%, rgba(0,0,0,0.2) 78%, transparent 100%)";
@@ -129,7 +130,9 @@ export function ContactFooter({ settings }: { settings: SiteSettings }) {
                   ) : null}
 
                   <a
-                    href={`mailto:${settings.email}`}
+                    href={gmailComposeUrl(settings.email)}
+                    target="_blank"
+                    rel="noreferrer noopener"
                     className="text-[12px] font-medium text-neutral-600 underline decoration-black/15 underline-offset-4 transition-colors hover:text-neutral-950 dark:text-neutral-200 dark:decoration-white/20 dark:hover:text-white"
                     dir="ltr"
                   >

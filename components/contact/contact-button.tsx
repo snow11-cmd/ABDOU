@@ -1,11 +1,12 @@
 "use client";
 
 import { AnimatePresence, motion } from "framer-motion";
+import { ArrowUpRight } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 
 import { CheckedIcon, CopyIcon, MailFilledIcon } from "@/components/icons";
 import { useI18n } from "@/lib/i18n/provider";
-import { cn } from "@/lib/utils";
+import { cn, gmailComposeUrl } from "@/lib/utils";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 
@@ -55,31 +56,58 @@ export function ContactButton({
         transition={{ layout: { duration: 0.45, ease: EASE } }}
         className="inline-flex h-11 items-center rounded-xl bg-neutral-950 p-1.5 text-white shadow-[0_16px_35px_-22px_rgba(0,0,0,0.8)] dark:bg-[#f4f1ea] dark:text-neutral-950 dark:shadow-[0_16px_35px_-18px_rgba(0,0,0,0.9)]"
       >
-        <button
-          type="button"
-          onClick={() => setOpen((current) => !current)}
-          aria-expanded={open}
-          className="group inline-flex h-8 items-center gap-2 rounded-lg px-3 text-[13px] font-medium transition-colors hover:bg-white/10 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white dark:hover:bg-black/[0.08] dark:focus-visible:outline-neutral-950"
-        >
-          <MailFilledIcon
-            size={14}
-            strokeWidth={1.75}
-            className="transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:-rotate-6"
-            aria-hidden="true"
-          />
-          <AnimatePresence mode="popLayout" initial={false}>
-            <motion.span
-              key={open ? "email" : "label"}
+        <AnimatePresence mode="popLayout" initial={false}>
+          {open ? (
+            <motion.a
+              key="email"
+              href={gmailComposeUrl(email)}
+              target="_blank"
+              rel="noreferrer noopener"
+              title={t("hero.openGmail")}
+              aria-label={`${t("hero.openGmail")}: ${email}`}
               initial={{ opacity: 0, y: 5 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -5 }}
               transition={{ duration: 0.2, ease: EASE }}
-              className="max-w-[46vw] truncate sm:max-w-none"
+              className="group inline-flex h-8 items-center gap-2 rounded-lg px-3 text-[13px] font-medium transition-colors hover:bg-white/10 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white dark:hover:bg-black/[0.08] dark:focus-visible:outline-neutral-950"
             >
-              {open ? email : (label ?? t("hero.ctaContact"))}
-            </motion.span>
-          </AnimatePresence>
-        </button>
+              <MailFilledIcon
+                size={14}
+                strokeWidth={1.75}
+                className="transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:-rotate-6"
+                aria-hidden="true"
+              />
+              <span dir="ltr" className="max-w-[46vw] truncate sm:max-w-none">
+                {email}
+              </span>
+              <ArrowUpRight
+                className="size-3.5 opacity-70 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                aria-hidden="true"
+              />
+            </motion.a>
+          ) : (
+            <motion.button
+              key="toggle"
+              type="button"
+              onClick={() => setOpen(true)}
+              initial={{ opacity: 0, y: 5 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -5 }}
+              transition={{ duration: 0.2, ease: EASE }}
+              className="group inline-flex h-8 items-center gap-2 rounded-lg px-3 text-[13px] font-medium transition-colors hover:bg-white/10 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white dark:hover:bg-black/[0.08] dark:focus-visible:outline-neutral-950"
+            >
+              <MailFilledIcon
+                size={14}
+                strokeWidth={1.75}
+                className="transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:-rotate-6"
+                aria-hidden="true"
+              />
+              <span className="max-w-[46vw] truncate sm:max-w-none">
+                {label ?? t("hero.ctaContact")}
+              </span>
+            </motion.button>
+          )}
+        </AnimatePresence>
 
         <AnimatePresence initial={false}>
           {open ? (
